@@ -1,0 +1,6 @@
+﻿<resources>
+	<style name="Theme.NightShopStockManager" parent="android:Theme.Holo.Light">
+		<!-- Your customizations go here -->
+
+	</style>
+</resources>

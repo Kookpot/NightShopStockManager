@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:barcode ="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:c="clr-namespace:NightShopStockManager.Helpers.BindingConverters;assembly=NightShopStockManager"
+             xmlns:b="clr-namespace:NightShopStockManager.Helpers.Behaviours;assembly=NightShopStockManager"
+             xmlns:control="clr-namespace:NightShopStockManager;assembly=NightShopStockManager"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="NightShopStockManager.Views.BuyItemsPage"
+             Title="Buy Items"
+             BackgroundColor="{Binding BackGroundColor}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <c:ScanResultEventArgsToScanResultConverter x:Key="ScanResultToTextConverter" />
+            <Style x:Key="DefaultFrame" TargetType="Frame">
+                <Setter Property="Margin" Value="20"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource Green}"/>
+            </Style>
+            <Style x:Key="DefaultGrid" TargetType="Grid">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style x:Key="DefaultScannerView" TargetType="barcode:ZXingScannerView">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Frame Style="{StaticResource DefaultFrame}">
+            <Grid Style="{StaticResource DefaultGrid}">
+                <barcode:ZXingScannerView Style="{StaticResource DefaultScannerView}" 
+                                          x:Name="ScannerView"  
+                                          IsAnalyzing="{Binding IsAnalyzing}"
+                                          IsScanning="{Binding IsScanning}"
+                                          ScanResultCommand="{Binding ScanResult}">
+                </barcode:ZXingScannerView>
+                <control:ScannerOverlay x:Name="ScannerOverlay" 
+                                        TopText="Hold the barcode in front of the camera" 
+                                        BottomText="Scanning will happen automatically"
+                                        ShowManualButton="true"
+                                        FlashButtonClicked="ScannerOverlay_FlashButtonClicked">
+                    <control:ScannerOverlay.Behaviors>
+                        <b:EventToCommandBehavior EventName="ManualButtonClicked" Command="{Binding ManualCommand}"/>
+                    </control:ScannerOverlay.Behaviors>
+                </control:ScannerOverlay>
+            </Grid>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

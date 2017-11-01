@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             xmlns:b="clr-namespace:NightShopStockManager.Helpers.BindingConverters;assembly=NightShopStockManager"
+             x:Class="NightShopStockManager.Views.SearchItemPage" Title="Search item">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <b:EuroConverter x:Key="EuroConverter"/>
+            <Style x:Key="DefaultListView" TargetType="ListView">
+                <Setter Property="Margin" Value="20"/>
+            </Style>
+            <Style x:Key="DefaultStackLayout" TargetType="StackLayout">
+                <Setter Property="Margin" Value="5"/>
+                <Setter Property="Orientation" Value="Vertical"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style x:Key="Header" TargetType="StackLayout">
+                <Setter Property="BackgroundColor" Value="{DynamicResource Green}"/>
+            </Style>
+            <Style x:Key="DefaultLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="LeftLabel" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="BarcodeStackLayout" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+            </Style>
+            <Style x:Key="BarcodeEntry" TargetType="Entry">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style x:Key="BarcodeButton" TargetType="Entry">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HorizontalOptions" Value="End"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource DefaultStackLayout}">
+            <StackLayout Style="{StaticResource BarcodeStackLayout}">
+                <Label Text="Search :"
+                       Style="{StaticResource LeftLabel}"/>
+                <Entry Text="{Binding SearchValue}"
+                       x:Name="SearchEntry"
+                       Placeholder="Search on name or barcode"
+                       Style="{StaticResource BarcodeEntry}"/>
+                <Button Command="{Binding BarcodeSearch}"
+                        Style="{StaticResource BarcodeButton}"
+                        Image="barcodesearch.png"/>
+            </StackLayout>
+            <ListView x:Name="listView" 
+                      ItemsSource="{Binding Items}"
+                      Style="{StaticResource DefaultListView}" 
+                      SelectedItem="{Binding ItemSelected, Mode=TwoWay}">
+                <ListView.Header>
+                    <Grid Style="{StaticResource Header}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Text="Name"
+                               Grid.Column="0"
+                               Style="{StaticResource DefaultLabel}"/>
+                        <Label Text="Barcode"
+                               Grid.Column="1"
+                               Style="{StaticResource DefaultLabel}"/>
+                        <Label Text="Sell Price"
+                               Grid.Column="2"
+                               Style="{StaticResource DefaultLabel}"/>
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding Name}" 
+                                       Grid.Column="0"
+                                       Style="{StaticResource DefaultLabel}"/>
+                                <Label Text="{Binding Barcode}" 
+                                       Grid.Column="1"
+                                       Style="{StaticResource DefaultLabel}"/>
+                                <Label Text="{Binding SellPrice, Converter={StaticResource EuroConverter}}" 
+                                       Grid.Column="2"
+                                       Style="{StaticResource DefaultLabel}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

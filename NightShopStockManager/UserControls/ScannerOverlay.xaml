@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Grid xmlns="http://xamarin.com/schemas/2014/forms" 
+      xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+      x:Class="NightShopStockManager.ScannerOverlay" 
+      VerticalOptions="FillAndExpand" 
+      HorizontalOptions="FillAndExpand">
+    <Grid.RowDefinitions>
+        <RowDefinition Height="1,*"/>
+        <RowDefinition Height="2,*"/>
+        <RowDefinition Height="1,*"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="1,*"/>
+    </Grid.ColumnDefinitions>
+    <BoxView Style="{DynamicResource FillBoxView}" 
+             Grid.Column="0" 
+             Grid.Row="0"/>
+    <BoxView Style="{DynamicResource FillBoxView}" 
+             Grid.Column="0" 
+             Grid.Row="2"/>
+    <BoxView Style="{DynamicResource CenterBoxView}" 
+             Grid.Column="0" 
+             Grid.Row="1"/>
+    <Label x:Name="topText" 
+           Style="{DynamicResource PinkLabel}" 
+           Grid.Column="0" 
+           Grid.Row="0"/>
+    <Label x:Name="botText" 
+           Style="{DynamicResource PinkLabel}" 
+           Grid.Column="0" 
+           Grid.Row="2"/>
+    <Frame Style="{DynamicResource FlashFrame}" 
+           Grid.Column="0" 
+           Grid.Row="0">
+        <Button x:Name="flash" 
+                Style="{DynamicResource PinkButton}" 
+                Image="ic_flash_on_white_48pt.png"/>
+    </Frame>
+    <Frame Style="{DynamicResource FlashFrame}" 
+           Grid.Column="0" 
+           Grid.Row="2">
+        <Button x:Name="manual" 
+                Style="{DynamicResource PinkButton}" 
+                Image="ic_create_white_48pt.png"/>
+    </Frame>
+</Grid>
