@@ -68,7 +68,7 @@ namespace NightShopStockManager.ViewModels
 
         private async Task HandleBarcode(string barcode)
         {
-            var stockItem = (await App.Database.SearchStockItemsAsync(barcode)).OrderBy(x => x.ExpiryDate).FirstOrDefault();
+            var stockItem = (await App.Database.SearchStockItemsAsync(barcode, false)).OrderBy(x => x.ExpiryDate).FirstOrDefault();
             if (stockItem != null)
             {
                 stockItem.CurrentCount--;

@@ -31,21 +31,25 @@
         <Frame Style="{StaticResource DefaultFrame}">
             <StackLayout Style="{StaticResource DefaultStackLayout}">
                 <Button Style="{StaticResource DefaultNavButton}" 
-                        Image="itemmanagement.png" 
-                        Text="Item Management" 
-                        Command="{Binding ItemManagement}"/>
-                <Button Style="{StaticResource DefaultNavButton}" 
-                        Image="stockmanagement.png" 
-                        Text="Stock Management" 
-                        Command="{Binding StockManagement}"/>
+                        Image="sell.png" 
+                        Text="Sell Items" 
+                        Command="{Binding SellItems}"/>
                 <Button Style="{StaticResource DefaultNavButton}" 
                         Image="buy.png" 
                         Text="Buy Items" 
                         Command="{Binding BuyItems}"/>
                 <Button Style="{StaticResource DefaultNavButton}" 
-                        Image="sell.png" 
-                        Text="Sell Items" 
-                        Command="{Binding SellItems}"/>
+                        Image="stockmanagement.png" 
+                        Text="Stock Management" 
+                        Command="{Binding StockManagement}"/>
+                <Button Style="{StaticResource DefaultNavButton}" 
+                        Image="itemmanagement.png" 
+                        Text="Item Management" 
+                        Command="{Binding ItemManagement}"/>
+                <Button Style="{StaticResource DefaultNavButton}" 
+                        Image="suppliermanagement.png" 
+                        Text="Supplier Management" 
+                        Command="{Binding SupplierManagement}"/>
             </StackLayout>
         </Frame>
     </ContentPage.Content>

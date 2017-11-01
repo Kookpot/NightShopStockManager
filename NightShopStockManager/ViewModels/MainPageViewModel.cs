@@ -66,17 +66,17 @@ namespace NightShopStockManager.ViewModels
 
         #endregion
 
-        #region Command Warnings
+        #region Command Supplier Management
 
-        private Command _warnings;
-        public Command Warnings
+        private Command _supplierManagement;
+        public Command SupplierManagement
         {
-            get { return _warnings ?? (_warnings = new Command(async () => await OnWarnings())); }
+            get { return _supplierManagement ?? (_supplierManagement = new Command(async () => await OnSupplierManagement())); }
         }
 
-        private async Task OnWarnings()
+        private async Task OnSupplierManagement()
         {
-            await _navigationService.NavigateAsync("WarningsPage");
+            await _navigationService.NavigateAsync("SupplierManagementPage");
         }
 
         #endregion

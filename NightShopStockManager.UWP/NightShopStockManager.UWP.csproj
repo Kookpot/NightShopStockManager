@@ -130,7 +130,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="sell.png" />
     <Content Include="stockmanagement.png" />
-    <Content Include="warning.png" />
+    <Content Include="suppliermanagement.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

@@ -1,5 +1,4 @@
-﻿using SQLite;
-using System;
+﻿using System;
 using System.ComponentModel;
 
 namespace NightShopStockManager
@@ -10,6 +9,7 @@ namespace NightShopStockManager
 
         public int ID { get; set; }
         public int Item { get; set; }
+        public int Supplier { get; set; }
         public int CurrentCount { get; set; }
         public decimal BuyPrice { get; set; }
 
@@ -26,6 +26,7 @@ namespace NightShopStockManager
         }
 
         public string Name { get; set; }
+        public string SupplierName { get; set; }
         public string Barcode { get; set; }
         public decimal SellPrice { get; set; }
 
@@ -47,6 +48,7 @@ namespace NightShopStockManager
             {
                 ID = ID,
                 Item = Item,
+                Supplier = Supplier,
                 CurrentCount = CurrentCount,
                 BuyPrice = BuyPrice,
                 ExpiryDate = ExpiryDate
@@ -59,6 +61,8 @@ namespace NightShopStockManager
             {
                 ID = ID,
                 Name = Name,
+                Supplier = Supplier,
+                SupplierName = SupplierName,
                 Barcode = Barcode,
                 SellPrice = SellPrice,
                 BuyPrice = BuyPrice,

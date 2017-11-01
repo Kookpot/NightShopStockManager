@@ -4,22 +4,23 @@ using Xamarin.Forms;
 
 namespace NightShopStockManager.ViewModels
 {
-    public class ItemPageViewModel : BaseViewModel
+    public class SupplierPageViewModel : BaseViewModel
     {
         #region Members
 
         private NavigationParameters _parameters;
 
-        private Item _item;
-        public Item Item {
-            get { return _item; }
+        private Supplier _supplier;
+        public Supplier Supplier
+        {
+            get { return _supplier; }
             set {
-                SetProperty(ref _item, value);
+                SetProperty(ref _supplier, value);
                 RaisePropertyChanged("CanDelete");
             }
         }
 
-        public bool CanDelete => Item != null && Item.ID != 0;
+        public bool CanDelete => Supplier != null && Supplier.ID != 0;
 
         #endregion
 
@@ -48,10 +49,10 @@ namespace NightShopStockManager.ViewModels
 
         private async Task OnSave()
         {
-            await App.Database.SaveItemAsync(Item);
+            await App.Database.SaveSupplierAsync(Supplier);
             var parameters = new NavigationParameters()
             {
-                {"Item", Item }
+                {"Supplier", Supplier }
             };
             await _navigationService.GoBackAsync(parameters);
         }
@@ -68,30 +69,15 @@ namespace NightShopStockManager.ViewModels
 
         private async Task OnDelete()
         {
-            await App.Database.DeleteItemAsync(Item);
+            await App.Database.DeleteSupplierAsync(Supplier);
             await _navigationService.GoBackAsync();
-        }
-
-        #endregion
-
-        #region Barcode Search
-
-        private Command _barcodeSearch;
-        public Command BarcodeSearch
-        {
-            get { return _barcodeSearch ?? (_barcodeSearch = new Command(async () => await OnBarcodeSearch())); }
-        }
-
-        private  async Task OnBarcodeSearch()
-        {
-            await _navigationService.NavigateAsync("BarcodePage", _parameters);
         }
 
         #endregion
 
         #region Constructors
 
-        public ItemPageViewModel(INavigationService navigationService) : base(navigationService) { }
+        public SupplierPageViewModel(INavigationService navigationService) : base(navigationService) { }
 
         #endregion
 
@@ -100,17 +86,13 @@ namespace NightShopStockManager.ViewModels
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             _parameters = parameters;
-            if (parameters.ContainsKey("Item"))
+            if (parameters.ContainsKey("Supplier"))
             {
-                Item = ((Item)parameters["Item"]).Clone();
+                Supplier = ((Supplier)parameters["Supplier"]).Clone();
             }
             else
             {
-                Item = new Item();
-            }
-            if (parameters.ContainsKey("Barcode"))
-            {
-                Item.Barcode = (string)parameters["Barcode"];
+                Supplier = new Supplier();
             }
         }
 

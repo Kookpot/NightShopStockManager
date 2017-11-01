@@ -83,7 +83,10 @@ namespace NightShopStockManager.ViewModels
                 {
                     {"Item", item }
                 };
-                await _navigationService.NavigateAsync("StockItemPage", parameters);
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await _navigationService.NavigateAsync("StockItemPage", parameters);
+                });
             }
             else
             {
@@ -91,7 +94,10 @@ namespace NightShopStockManager.ViewModels
                 {
                     {"Barcode", barcode }
                 };
-                await _navigationService.NavigateAsync("ItemPage", parameters);
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await _navigationService.NavigateAsync("ItemPage", parameters);
+                });
             }
         }
 

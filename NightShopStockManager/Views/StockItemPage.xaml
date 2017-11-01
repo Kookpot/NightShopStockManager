@@ -4,7 +4,7 @@
              x:Class="NightShopStockManager.Views.StockItemPage"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
-             Title="{Binding Name}">
+             Title="{Binding StockItem.Name}">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="DefaultStackLayout" TargetType="StackLayout">
@@ -31,15 +31,17 @@
                 <Button Command="{Binding ItemSearch}"
                         Image="itemsearch.png"/>
             </StackLayout>
+            <Label Text="Sell price" />
+            <Label Text="{Binding StockItem.SellPrice}"/>
+            <Label Text="Supplier" />
             <StackLayout Style="{StaticResource ItemStackLayout}">
-                <Label Text="Only warnings"
+                <Label Text="{Binding StockItem.SupplierName}"
                        Style="{StaticResource ItemLabel}"/>
-                <Switch Toggled="{Binding Warning}"/>
+                <Button Command="{Binding SupplierSearch}"
+                        Image="itemsearch.png"/>
             </StackLayout>
             <Label Text="Current count" />
             <Entry Text="{Binding StockItem.CurrentCount}"/>
-            <Label Text="Sell price" />
-            <Label Text="{Binding StockItem.SellPrice}"/>
             <Label Text="Buy price"/>
             <Entry Text="{Binding StockItem.BuyPrice}"/>
             <Label Text="Expiry Date"/>

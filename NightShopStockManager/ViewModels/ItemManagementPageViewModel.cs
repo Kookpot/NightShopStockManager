@@ -8,6 +8,9 @@ namespace NightShopStockManager.ViewModels
     {
         #region Members
 
+        private NavigationParameters _parameters;
+        private bool _select;
+
         private RangeEnabledObservableCollection<Item> _items;
         public RangeEnabledObservableCollection<Item> Items
         {
@@ -93,6 +96,11 @@ namespace NightShopStockManager.ViewModels
             {
                 SearchValue = (string)parameters["Barcode"];
             }
+            if (parameters.ContainsKey("Select"))
+            {
+                _parameters = parameters;
+                _select = (bool)parameters["Select"];
+            }
             if (string.IsNullOrEmpty(SearchValue))
             {
                 Items.InsertRange(await App.Database.GetItemsAsync());
@@ -107,11 +115,19 @@ namespace NightShopStockManager.ViewModels
         {
             if (itm != null)
             {
-                var param = new NavigationParameters
+                if (_select)
                 {
-                    { "Item", itm }
-                };
-                await _navigationService.NavigateAsync("ItemPage", param);
+                    _parameters.Add("Item", itm);
+                    await _navigationService.GoBackAsync(_parameters);
+                }
+                else
+                {
+                    var param = new NavigationParameters
+                    {
+                        { "Item", itm }
+                    };
+                    await _navigationService.NavigateAsync("ItemPage", param);
+                }
             }
         }
 

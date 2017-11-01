@@ -25,9 +25,9 @@ namespace NightShopStockManager
             Container.RegisterTypeForNavigation<ItemManagementPage>();
             Container.RegisterTypeForNavigation<StockManagementPage>();
             Container.RegisterTypeForNavigation<BuyItemsPage>();
-            Container.RegisterTypeForNavigation<SearchItemPage>();
             Container.RegisterTypeForNavigation<SellItemsPage>();
-            Container.RegisterTypeForNavigation<WarningsPage>();
+            Container.RegisterTypeForNavigation<SupplierManagementPage>();
+            Container.RegisterTypeForNavigation<SupplierPage>();
             Container.RegisterTypeForNavigation<ItemPage>();
             Container.RegisterTypeForNavigation<ManualEnteringPage>();
             Container.RegisterTypeForNavigation<StockItemPage>();

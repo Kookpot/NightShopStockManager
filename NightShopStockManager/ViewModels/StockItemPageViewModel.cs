@@ -15,7 +15,10 @@ namespace NightShopStockManager.ViewModels
         public CombinedStockItem StockItem
         {
             get { return _stockItem; }
-            set { SetProperty(ref _stockItem, value); }
+            set {
+                SetProperty(ref _stockItem, value);
+                RaisePropertyChanged("CanDelete");
+            }
         }
 
         public bool CanDelete => StockItem != null && StockItem.ID != 0;
@@ -69,7 +72,7 @@ namespace NightShopStockManager.ViewModels
 
         #endregion
 
-        #region Barcode Search
+        #region Item Search
 
         private Command _itemSearch;
         public Command ItemSearch
@@ -79,7 +82,24 @@ namespace NightShopStockManager.ViewModels
 
         private async Task OnItemSearch()
         {
-            await _navigationService.NavigateAsync("SearchItemPage", _parameters);
+            _parameters.Add("Select", true);
+            await _navigationService.NavigateAsync("ItemManagementPage", _parameters);
+        }
+
+        #endregion
+
+        #region Supploir Search
+
+        private Command _supplierSearch;
+        public Command SupplierSearch
+        {
+            get { return _supplierSearch ?? (_supplierSearch = new Command(async () => await OnSupplierSearch())); }
+        }
+
+        private async Task OnSupplierSearch()
+        {
+            _parameters.Add("Select", true);
+            await _navigationService.NavigateAsync("SupplierManagementPage", _parameters);
         }
 
         #endregion
@@ -113,6 +133,12 @@ namespace NightShopStockManager.ViewModels
                 StockItem.Item = itm.ID;
                 StockItem.Name = itm.Name;
                 StockItem.SellPrice = itm.SellPrice;
+            }
+            if (parameters.ContainsKey("Supplier"))
+            {
+                var itm = (Supplier)parameters["Supplier"];
+                StockItem.Supplier = itm.ID;
+                StockItem.SupplierName = itm.Name;
             }
         }
 

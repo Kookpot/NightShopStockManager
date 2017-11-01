@@ -8,6 +8,7 @@ namespace NightShopStockManager
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
         public int Item { get; set; }
+        public int Supplier { get; set; }
         public int CurrentCount { get; set; }
         public decimal BuyPrice { get; set; }
         public DateTime ExpiryDate { get; set; }

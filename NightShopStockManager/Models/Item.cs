@@ -11,8 +11,6 @@ namespace NightShopStockManager
         public int ID { get; set; }
 		public string Name { get; set; }
 
-        //public string Barcode { get; set; }
-
         private string _barcode;
         public string Barcode
         {

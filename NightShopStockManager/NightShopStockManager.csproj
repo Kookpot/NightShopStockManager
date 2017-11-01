@@ -47,6 +47,7 @@
     <Compile Include="IMedia.cs" />
     <Compile Include="Models\CombinedStockItem.cs" />
     <Compile Include="Models\StockItem.cs" />
+    <Compile Include="Models\Supplier.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControls\ScannerOverlay.xaml.cs">
       <DependentUpon>ScannerOverlay.xaml</DependentUpon>
@@ -54,8 +55,9 @@
     <Compile Include="ViewModels\BarcodePageViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\BuyItemsPageViewModel.cs" />
+    <Compile Include="ViewModels\SupplierPageViewModel.cs" />
+    <Compile Include="ViewModels\SupplierManagementPageViewModel.cs" />
     <Compile Include="ViewModels\ManualEnteringPageViewModel.cs" />
-    <Compile Include="ViewModels\SearchItemPageViewModel.cs" />
     <Compile Include="ViewModels\ItemManagementPageViewModel.cs" />
     <Compile Include="ViewModels\ItemPageViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
@@ -68,14 +70,17 @@
     <Compile Include="Views\BuyItemsPage.xaml.cs">
       <DependentUpon>BuyItemsPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SupplierPage.xaml.cs">
+      <DependentUpon>SupplierPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SupplierManagementPage.xaml.cs">
+      <DependentUpon>SupplierManagementPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ItemManagementPage.xaml.cs">
       <DependentUpon>ItemManagementPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ManualEnteringPage.xaml.cs">
       <DependentUpon>ManualEnteringPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SearchItemPage.xaml.cs">
-      <DependentUpon>SearchItemPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\StockItemPage.xaml.cs">
       <DependentUpon>StockItemPage.xaml</DependentUpon>
@@ -210,13 +215,19 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\SearchItemPage.xaml">
+    <EmbeddedResource Include="Views\ManualEnteringPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\ManualEnteringPage.xaml">
+    <EmbeddedResource Include="Views\SupplierManagementPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SupplierPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
