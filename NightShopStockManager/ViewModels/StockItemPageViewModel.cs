@@ -66,6 +66,7 @@ namespace NightShopStockManager.ViewModels
 
         private async Task OnDelete()
         {
+            await App.Database.AddThowAwayRecord(StockItem);
             await App.Database.DeleteStockItemAsync(StockItem);
             await _navigationService.GoBackAsync();
         }

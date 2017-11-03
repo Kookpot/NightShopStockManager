@@ -42,8 +42,10 @@
             </StackLayout>
             <Label Text="Current count" />
             <Entry Text="{Binding StockItem.CurrentCount}"/>
-            <Label Text="Buy price"/>
+            <Label Text="Buy price/p. item"/>
             <Entry Text="{Binding StockItem.BuyPrice}"/>
+            <Label Text="Total buy price"/>
+            <Entry Text="{Binding StockItem.TotalPrice}"/>
             <Label Text="Expiry Date"/>
             <DatePicker Date="{Binding StockItem.ExpiryDate}"/>
             <Button Text="Save" 

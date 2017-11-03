@@ -68,7 +68,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
     <OutputPath>bin\x86\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NETFX_CORE;WINDOWS_UWP;CODE_ANALYSIS;UWP</DefineConstants>
     <NoWarn>;2008</NoWarn>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -114,12 +114,18 @@
     <Content Include="beepNOk.mp3" />
     <Content Include="beepOk.mp3" />
     <Content Include="buy.png" />
+    <Content Include="exportdata.png" />
+    <Content Include="history.png" />
+    <Content Include="ic_cancel_white_48pt.png" />
     <Content Include="ic_create_white_48pt.png" />
     <Content Include="ic_done_white_48pt.png" />
     <Content Include="ic_flash_off_white_48pt.png" />
     <Content Include="ic_flash_on_white_48pt.png" />
     <Content Include="itemmanagement.png" />
     <Content Include="itemsearch.png" />
+    <Content Include="minus.png" />
+    <Content Include="performance.png" />
+    <Content Include="plus.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -128,8 +134,11 @@
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="reports.png" />
     <Content Include="sell.png" />
+    <Content Include="settings.png" />
     <Content Include="stockmanagement.png" />
+    <Content Include="summary.png" />
     <Content Include="suppliermanagement.png" />
   </ItemGroup>
   <ItemGroup>

@@ -16,6 +16,10 @@ namespace NightShopStockManager
 			database.CreateTableAsync<Item>().Wait();
             database.CreateTableAsync<StockItem>().Wait();
             database.CreateTableAsync<Supplier>().Wait();
+            database.CreateTableAsync<RecordItem>().Wait();
+            database.CreateTableAsync<Transaction>().Wait();
+            database.CreateTableAsync<ThrowAwayRecord>().Wait();
+            database.CreateTableAsync<BuyRecord>().Wait();
         }
 
         #region Items
@@ -23,11 +27,22 @@ namespace NightShopStockManager
         private List<Item> _items;
 		public async Task<List<Item>> GetItemsAsync()
 		{
+            await CreateOrGetItems();
+            return _items.OrderBy(x => x.Name).ToList();
+        }
+
+        public async Task<Item> GetItemByIdAsync(int id)
+        {
+            await CreateOrGetItems();
+            return _items.SingleOrDefault(x => x.ID == id);
+        }
+
+        private async Task CreateOrGetItems()
+        {
             if (_items == null)
             {
                 _items = await database.Table<Item>().ToListAsync();
             }
-            return _items.OrderBy(x => x.Name).ToList();
         }
 
         public async Task<List<Item>> SearchItemsAsync(string search)
@@ -47,6 +62,12 @@ namespace NightShopStockManager
                     _items.Remove(found);
                 }
                 _items.Add(item);
+                var lst = _combinedStockItems.Where(x => x.Item == item.ID);
+                foreach(var combo in lst)
+                {
+                    combo.Name = item.Name;
+                    combo.SellPrice = item.SellPrice;
+                }
                 return database.UpdateAsync(item);
             }
             else
@@ -155,6 +176,7 @@ namespace NightShopStockManager
             else
             {
                 _combinedStockItems.Add(item);
+                await database.InsertAsync(item.CreateBuyRecord());
                 return await database.InsertAsync(item.CreateStockItem());
             }
         }
@@ -182,6 +204,19 @@ namespace NightShopStockManager
         {
             await RemoveStockItemById(item.ID);
             return await database.DeleteAsync(item.CreateStockItem());
+        }
+
+        public async Task<int> AddThowAwayRecord(CombinedStockItem item)
+        {
+            var rec = new ThrowAwayRecord()
+            {
+                Amount = item.CurrentCount,
+                DateTime = DateTime.Now,
+                BuyPrice = item.BuyPrice,
+                TotalPrice = item.TotalPrice,
+                Item = item.Item
+            };
+            return await database.InsertAsync(rec);
         }
 
         #endregion
@@ -214,6 +249,11 @@ namespace NightShopStockManager
                 {
                     _suppliers.Remove(found);
                 }
+                var lst = _combinedStockItems.Where(x => x.Supplier == supplier.ID);
+                foreach (var combo in lst)
+                {
+                    combo.SupplierName = supplier.Name;
+                }
                 _suppliers.Add(supplier);
                 return database.UpdateAsync(supplier);
             }
@@ -244,6 +284,131 @@ namespace NightShopStockManager
                 _combinedStockItems.Remove(stock);
                 await database.DeleteAsync(stock.CreateStockItem());
             }
+        }
+
+        #endregion
+
+        #region Transaction
+        
+        public async Task<int> SaveTransactionAsync(Transaction transaction)
+        {
+            return await database.InsertAsync(transaction);
+        }
+
+        public async Task<int> SaveRecordItemAsync(RecordItem recordItem)
+        {
+            return await database.InsertAsync(recordItem);
+        }
+
+        #endregion
+
+        #region Reporting
+
+        public async Task<decimal> GetIncome(DateTime start, DateTime end)
+        {
+            return (await database.QueryAsync<Transaction>($"SELECT * FROM [Transaction] WHERE DateTime > ? AND DateTime < ?", start.Ticks, end.AddDays(1).Ticks)).Sum(x => x.TotalPrice);
+        }
+
+        public async Task<decimal> GetExpenses(DateTime start, DateTime end)
+        {
+            return (await database.QueryAsync<BuyRecord>($"SELECT * FROM [BuyRecord] WHERE DateTime > ? AND DateTime < ?", start.Ticks, end.AddDays(1).Ticks)).Sum(x => x.TotalPrice);
+        }
+
+        public async Task<decimal> GetExpiredExpenses(DateTime start, DateTime end)
+        {
+            return (await database.QueryAsync<ThrowAwayRecord>($"SELECT * FROM [ThrowAwayRecord] WHERE DateTime > ? AND DateTime < ?", start.Ticks, end.AddDays(1).Ticks)).Sum(x => x.TotalPrice);
+        }
+
+        public async Task<Dictionary<DateTime, int>> GetSoldDataAsync(Item itm, DateTime start, DateTime end)
+        {
+            var itms = (await database.QueryAsync<RecordItem>($"SELECT * FROM [RecordItem] WHERE Item = ? AND DateTime > ? AND DateTime < ?", itm.ID, start.Ticks, end.AddDays(1).Ticks));
+            var result = new Dictionary<DateTime, int>();
+            var currentDate = start;
+            while(currentDate <= end)
+            {
+                result.Add(currentDate, 0);
+                currentDate = currentDate.AddDays(1);
+            }
+            foreach(var recordItm in itms)
+            {
+                var date = new DateTime(recordItm.DateTime.Year, recordItm.DateTime.Month, recordItm.DateTime.Day);
+                result[date] += recordItm.Amount;
+            }
+            return result;
+        }
+
+        public async Task<List<CombinedRecordItem>> GetRecordItemsAsync()
+        {
+            var lst = await database.Table<RecordItem>().ToListAsync();
+            await CreateOrGetItems();
+            var cRecs = new List<CombinedRecordItem>();
+            foreach(var itm in lst)
+            {
+                var found = _items.SingleOrDefault(x => x.ID == itm.ID);
+                if (found != null)
+                {
+                    cRecs.Add(new CombinedRecordItem()
+                    {
+                        Name = found.Name,
+                        Item = found.ID,
+                        Amount = itm.Amount,
+                        DateTime = itm.DateTime,
+                        SellPrice = itm.SellPrice
+                    });
+                }
+            }
+            return cRecs;
+        }
+
+        public async Task<List<CombinedThrowAwayRecord>> GetThrowAwayRecordAsync()
+        {
+            var lst = await database.Table<ThrowAwayRecord>().ToListAsync();
+            await CreateOrGetItems();
+            var cRecs = new List<CombinedThrowAwayRecord>();
+            foreach (var itm in lst)
+            {
+                var found = _items.SingleOrDefault(x => x.ID == itm.ID);
+                if (found != null)
+                {
+                    cRecs.Add(new CombinedThrowAwayRecord()
+                    {
+                        Name = found.Name,
+                        Item = found.ID,
+                        Amount = itm.Amount,
+                        DateTime = itm.DateTime,
+                        BuyPrice = itm.BuyPrice,
+                        TotalPrice = itm.TotalPrice
+                    });
+                }
+            }
+            return cRecs;
+        }
+
+        public async Task<List<CombinedBuyRecord>> GetBuyRecordsAsync()
+        {
+            var lst = await database.Table<BuyRecord>().ToListAsync();
+            await CreateOrGetItems();
+            var cRecs = new List<CombinedBuyRecord>();
+            await GetSuppliersAsync();
+            foreach (var itm in lst)
+            {
+                var found = _items.SingleOrDefault(x => x.ID == itm.ID);
+                var foundSupplier = _suppliers.SingleOrDefault(x => x.ID == itm.Supplier);
+                if (found != null) {
+                    cRecs.Add(new CombinedBuyRecord()
+                    {
+                        Name = found.Name,
+                        Item = found.ID,
+                        Supplier = foundSupplier.ID,
+                        SupplierName = foundSupplier.Name,
+                        Amount = itm.Amount,
+                        DateTime = itm.DateTime,
+                        BuyPrice = itm.BuyPrice,
+                        TotalPrice = itm.TotalPrice
+                    });
+                }
+            }
+            return cRecs;
         }
 
         #endregion

@@ -20,5 +20,12 @@ namespace NightShopStockManager.iOS
 
 			return Path.Combine(libFolder, filename);
 		}
-	}
+
+        public void SaveFile(string filename, string text)
+        {
+            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
+            var filePath = Path.Combine(documentsPath, filename);
+            File.WriteAllText(filePath, text);
+        }
+    }
 }

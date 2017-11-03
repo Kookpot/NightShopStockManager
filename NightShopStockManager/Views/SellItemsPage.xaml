@@ -36,12 +36,16 @@
                                           ScanResultCommand="{Binding ScanResult}">
                 </barcode:ZXingScannerView>
                 <control:ScannerOverlay x:Name="ScannerOverlay" 
-                                        TopText="Hold the barcode in front of the camera" 
-                                        BottomText="Scanning will happen automatically"
-                                        ShowManualButton ="true"
+                                        Counter="{Binding Counter}"
+                                        Total="{Binding Total}"
                                         FlashButtonClicked="ScannerOverlay_FlashButtonClicked">
                     <control:ScannerOverlay.Behaviors>
                         <b:EventToCommandBehavior EventName="ManualButtonClicked" Command="{Binding ManualCommand}"/>
+                        <b:EventToCommandBehavior EventName="PlusButtonClicked" Command="{Binding PlusCommand}"/>
+                        <b:EventToCommandBehavior EventName="MinusButtonClicked" Command="{Binding MinusCommand}"/>
+                        <b:EventToCommandBehavior EventName="CancelButtonClicked" Command="{Binding CancelCommand}"/>
+                        <b:EventToCommandBehavior EventName="DoneButtonClicked" Command="{Binding DoneCommand}"/>
+                        <b:EventToCommandBehavior EventName="SummaryButtonClicked" Command="{Binding SummaryCommand}"/>
                     </control:ScannerOverlay.Behaviors>
                 </control:ScannerOverlay>
 

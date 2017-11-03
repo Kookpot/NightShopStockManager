@@ -84,6 +84,7 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Label Text="Name"
                                Grid.Column="0"
@@ -97,11 +98,14 @@
                         <Label Text="Expiry Date"
                                Grid.Column="3"
                                Style="{StaticResource DefaultLabel}"/>
-                        <Label Text="Buy Price"
+                        <Label Text="Buy Price/p. item"
                                Grid.Column="4"
                                Style="{StaticResource DefaultLabel}"/>
-                        <Label Text="Sell Price"
+                        <Label Text="Total Buy Price"
                                Grid.Column="5"
+                               Style="{StaticResource DefaultLabel}"/>
+                        <Label Text="Sell Price"
+                               Grid.Column="6"
                                Style="{StaticResource DefaultLabel}"/>
                     </Grid>
                 </ListView.Header>
@@ -110,6 +114,7 @@
                         <ViewCell>
                             <Grid>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
@@ -133,8 +138,11 @@
                                 <Label Text="{Binding BuyPrice, Converter={StaticResource EuroConverter}}" 
                                        Grid.Column="4"
                                        Style="{StaticResource DefaultLabel}"/>
-                                <Label Text="{Binding SellPrice, Converter={StaticResource EuroConverter}}" 
+                                <Label Text="{Binding TotalPrice, Converter={StaticResource EuroConverter}}" 
                                        Grid.Column="5"
+                                       Style="{StaticResource DefaultLabel}"/>
+                                <Label Text="{Binding SellPrice, Converter={StaticResource EuroConverter}}" 
+                                       Grid.Column="6"
                                        Style="{StaticResource DefaultLabel}"/>
                             </Grid>
                         </ViewCell>

@@ -11,6 +11,10 @@ namespace NightShopStockManager.Views
         {
             InitializeComponent();
             ScannerOverlay.ShowFlashButton = ScannerView.HasTorch;
+            ScannerOverlay.ShowManualButton = true;
+            ScannerOverlay.ShowSummaryButton = true;
+            ScannerOverlay.TopText = "Hold the barcode in front of the camera";
+            ScannerOverlay.BottomText = "Scanning will happen automatically";
             ScannerOverlay.FlashIcon = "ic_flash_on_white_48pt.png";
         }
 

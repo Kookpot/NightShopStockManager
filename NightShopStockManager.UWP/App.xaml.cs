@@ -29,7 +29,7 @@ namespace NightShopStockManager.UWP
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
+            
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -48,6 +48,7 @@ namespace NightShopStockManager.UWP
 
                 rootFrame.NavigationFailed += OnNavigationFailed;
                 Xamarin.Forms.Forms.Init(e);
+                OxyPlot.Xamarin.Forms.Platform.UWP.PlotViewRenderer.Init();
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
                     //TODO: Load state from previously suspended application

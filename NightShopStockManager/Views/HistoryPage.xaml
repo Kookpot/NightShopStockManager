@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="NightShopStockManager.Views.HistoryPage"
+             xmlns:oxy="clr-namespace:OxyPlot.Xamarin.Forms;assembly=OxyPlot.Xamarin.Forms"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             Title="Historic view">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="DefaultStackLayout" TargetType="StackLayout">
+                <Setter Property="Margin" Value="20"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style x:Key="ItemStackLayout" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="VerticalOptions" Value="Fill"/>
+            </Style>
+            <Style x:Key="ItemLabel" TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="HeightRequest" Value="32"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style x:Key="DefaultPlot" TargetType="oxy:PlotView">
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Style="{StaticResource DefaultStackLayout}">
+            <Label Text="Search Item" />
+            <StackLayout Style="{StaticResource ItemStackLayout}">
+                <Label Text="{Binding Item.Name}"
+                       Style="{StaticResource ItemLabel}"/>
+                <Button Command="{Binding ItemSearch}"
+                        Image="itemsearch.png"/>
+            </StackLayout>
+            <Label Text="Start Date"/>
+            <DatePicker Date="{Binding StartDate}" 
+                        MaximumDate="{Binding EndDate}"/>
+            <Label Text="End Date"/>
+            <DatePicker Date="{Binding EndDate}"
+                        MaximumDate="{Binding CurrentDate}"/>
+            <Button Text="Show Data" 
+                    Command="{Binding ShowData}"/>
+            <oxy:PlotView Model="{Binding Model}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

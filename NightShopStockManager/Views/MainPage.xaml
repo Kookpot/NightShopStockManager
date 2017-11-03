@@ -43,13 +43,13 @@
                         Text="Stock Management" 
                         Command="{Binding StockManagement}"/>
                 <Button Style="{StaticResource DefaultNavButton}" 
-                        Image="itemmanagement.png" 
-                        Text="Item Management" 
-                        Command="{Binding ItemManagement}"/>
+                        Image="reports.png" 
+                        Text="Reports" 
+                        Command="{Binding Reporting}"/>
                 <Button Style="{StaticResource DefaultNavButton}" 
-                        Image="suppliermanagement.png" 
-                        Text="Supplier Management" 
-                        Command="{Binding SupplierManagement}"/>
+                        Image="settings.png" 
+                        Text="Settings" 
+                        Command="{Binding Settings}"/>
             </StackLayout>
         </Frame>
     </ContentPage.Content>

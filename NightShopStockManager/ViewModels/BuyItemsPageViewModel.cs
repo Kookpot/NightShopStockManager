@@ -43,6 +43,7 @@ namespace NightShopStockManager.ViewModels
         private void ManualEditing()
         {
             IsAnalyzing = false;
+            IsScanning = false;
             _navigationService.NavigateAsync("ManualEnteringPage");
         }
 

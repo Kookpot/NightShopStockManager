@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="NightShopStockManager.Views.SettingsPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="DefaultFrame" TargetType="Frame">
+                <Setter Property="Padding" Value="10"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource Green}"/>
+            </Style>
+            <Style x:Key="DefaultStackLayout" TargetType="StackLayout">
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource White}"/>
+            </Style>
+            <Style x:Key="DefaultNavButton" TargetType="Button">
+                <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+                <Setter Property="WidthRequest" Value="400"/>
+                <Setter Property="BackgroundColor" Value="{DynamicResource Green}"/>
+                <Setter Property="TextColor" Value="{DynamicResource White}"/>
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="BorderColor" Value="{DynamicResource Green}"/>
+                <Setter Property="BorderRadius" Value="10"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Frame Style="{StaticResource DefaultFrame}">
+            <StackLayout Style="{StaticResource DefaultStackLayout}">
+                <Button Style="{StaticResource DefaultNavButton}" 
+                        Image="itemmanagement.png" 
+                        Text="Item Management" 
+                        Command="{Binding ItemManagement}"/>
+                <Button Style="{StaticResource DefaultNavButton}" 
+                        Image="suppliermanagement.png" 
+                        Text="Supplier Management" 
+                        Command="{Binding SupplierManagement}"/>
+            </StackLayout>
+        </Frame>
+    </ContentPage.Content>
+</ContentPage>

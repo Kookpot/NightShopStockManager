@@ -32,15 +32,49 @@
     <Frame Style="{DynamicResource FlashFrame}" 
            Grid.Column="0" 
            Grid.Row="0">
-        <Button x:Name="flash" 
-                Style="{DynamicResource PinkButton}" 
-                Image="ic_flash_on_white_48pt.png"/>
+        <StackLayout Style="{DynamicResource OverlayStackLayout}">
+            <Button x:Name="manual" 
+                    Style="{DynamicResource PinkStartButton}" 
+                    Image="ic_create_white_48pt.png"/>
+            <Button x:Name="flash" 
+                    Style="{DynamicResource PinkEndButton}"/>
+        </StackLayout>
     </Frame>
     <Frame Style="{DynamicResource FlashFrame}" 
            Grid.Column="0" 
            Grid.Row="2">
-        <Button x:Name="manual" 
-                Style="{DynamicResource PinkButton}" 
-                Image="ic_create_white_48pt.png"/>
+        <StackLayout>
+            <StackLayout Style="{DynamicResource OverlayStackLayout}">
+                <StackLayout Style="{DynamicResource InnerStartOverlayStackLayout}">
+                    <Button x:Name="minus"
+                            Style="{DynamicResource PinkButton}" 
+                            Image="minus.png"/>
+                    <Label x:Name="number"
+                           Style="{DynamicResource CounterLabel}"/>
+                    <Button x:Name="plus" 
+                            Style="{DynamicResource PinkButton}" 
+                            Image="plus.png"/>
+                </StackLayout>
+                <StackLayout Style="{DynamicResource InnerEndOverlayStackLayout}">
+                    <Button x:Name="done" 
+                            Style="{DynamicResource PinkButton}" 
+                            Image="ic_done_white_48pt.png"/>
+                    <Button x:Name="cancel" 
+                            Style="{DynamicResource PinkButton}" 
+                            Image="ic_cancel_white_48pt.png"/>
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Style="{DynamicResource OverlayStackLayout}">
+                <StackLayout Style="{DynamicResource InnerStartOverlayStackLayout}">
+                    <Label x:Name="total"
+                           Style="{DynamicResource CounterLabel}"/>
+                </StackLayout>
+                <StackLayout Style="{DynamicResource InnerEndOverlayStackLayout}">
+                    <Button x:Name="summary" 
+                            Style="{DynamicResource PinkButton}" 
+                            Image="summary.png"/>
+                </StackLayout>
+            </StackLayout>
+        </StackLayout>
     </Frame>
 </Grid>

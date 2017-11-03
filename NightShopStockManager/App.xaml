@@ -7,6 +7,8 @@
         <ResourceDictionary>
             <Color x:Key="primaryGreen">#91CA47</Color>
             <Color x:Key="Green">Green</Color>
+            <Color x:Key="White">White</Color>
+            <Color x:Key="Black">Black</Color>
             <Color x:Key="Pink">#EE3D7F</Color>
             <Color x:Key="primaryDarkGreen">#6FA22E</Color>
             <Style x:Key="FillBoxView" TargetType="BoxView">
@@ -31,14 +33,50 @@
                 <Setter Property="Padding" Value="10"/>
                 <Setter Property="HasShadow" Value="false"/>
             </Style>
+            <Style x:Key="OverlayStackLayout" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+            <Style x:Key="InnerStartOverlayStackLayout" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
+            </Style>
+            <Style x:Key="InnerEndOverlayStackLayout" TargetType="StackLayout">
+                <Setter Property="Orientation" Value="Horizontal"/>
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+            </Style>
+            <Style x:Key="PinkEndButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource Pink}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="HorizontalOptions" Value="EndAndExpand"/>
+                <Setter Property="BorderColor" Value="{DynamicResource Pink}"/>
+                <Setter Property="BorderRadius" Value="10"/>
+                <Setter Property="TextColor" Value="{DynamicResource White}"/>
+            </Style>
+            <Style x:Key="PinkStartButton" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource Pink}"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
+                <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
+                <Setter Property="BorderColor" Value="{DynamicResource Pink}"/>
+                <Setter Property="BorderRadius" Value="10"/>
+                <Setter Property="TextColor" Value="{DynamicResource White}"/>
+            </Style>
             <Style x:Key="PinkButton" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="{DynamicResource Pink}"/>
                 <Setter Property="FontSize" Value="14"/>
                 <Setter Property="VerticalOptions" Value="Start"/>
-                <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="HorizontalOptions" Value="Start"/>
                 <Setter Property="BorderColor" Value="{DynamicResource Pink}"/>
                 <Setter Property="BorderRadius" Value="10"/>
                 <Setter Property="TextColor" Value="{DynamicResource White}"/>
+            </Style>
+            <Style x:Key="CounterLabel" TargetType="Label">
+                <Setter Property="FontSize" Value="40"/>
+                <Setter Property="Margin" Value="10, 0"/>
+                <Setter Property="TextColor" Value="{DynamicResource White}"/>
+                <Setter Property="VerticalOptions" Value="Start"/>
             </Style>
         </ResourceDictionary>
     </prism:PrismApplication.Resources>

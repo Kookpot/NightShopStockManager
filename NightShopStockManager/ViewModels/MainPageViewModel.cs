@@ -1,4 +1,6 @@
 ﻿using Prism.Navigation;
+using System;
+using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -81,10 +83,40 @@ namespace NightShopStockManager.ViewModels
 
         #endregion
 
+        #region Command Reporting
+
+        private Command _reporting;
+        public Command Reporting
+        {
+            get { return _reporting ?? (_reporting = new Command(async () => await OnReporting())); }
+        }
+
+        private async Task OnReporting()
+        {
+            await _navigationService.NavigateAsync("ReportsPage");
+        }
+
+        #endregion
+
+        #region Command Settings
+
+        private Command _settings;
+        public Command Settings
+        {
+            get { return _settings ?? (_settings = new Command(async () => await OnSettings())); }
+        }
+
+        private async Task OnSettings()
+        {
+            await _navigationService.NavigateAsync("SettingsPage");
+        }
+
+        #endregion
+
         #region Constructors
 
         public MainPageViewModel(INavigationService navigationService) : base(navigationService) { }
 
-        #endregion
+#endregion
     }
 }

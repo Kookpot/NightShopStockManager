@@ -35,11 +35,7 @@
                                           ScanResultCommand="{Binding ScanResult}">
                 </barcode:ZXingScannerView>
                 <control:ScannerOverlay x:Name="ScannerOverlay" 
-                                        ShowManualButton="false"
-                                        TopText="Hold the barcode in front of the camera" 
-                                        BottomText = "Scanning will happen automatically" 
                                         FlashButtonClicked="ScannerOverlay_FlashButtonClicked"/>
-
             </Grid>
         </Frame>
     </ContentPage.Content>

@@ -1,6 +1,8 @@
 ﻿{
   "dependencies": {
     "Microsoft.NETCore.UniversalWindowsPlatform": "6.0.1",
+    "OxyPlot.Windows": "1.0.0",
+    "OxyPlot.Xamarin.Forms": "1.0.0",
     "Prism.Autofac.Forms": "6.3.0",
     "Prism.Forms": "6.3.0",
     "sqlite-net-pcl": "1.5.166-beta",
