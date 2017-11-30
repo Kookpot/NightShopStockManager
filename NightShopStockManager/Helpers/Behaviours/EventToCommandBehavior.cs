@@ -53,15 +53,11 @@ namespace NightShopStockManager.Helpers.Behaviours
         void RegisterEvent(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
-            {
                 return;
-            }
 
             EventInfo eventInfo = AssociatedObject.GetType().GetRuntimeEvent(name);
             if (eventInfo == null)
-            {
                 throw new ArgumentException(string.Format("EventToCommandBehavior: Can't register the '{0}' event.", EventName));
-            }
 
             if (eventInfo.EventHandlerType.GetTypeInfo().GetDeclaredMethod("Invoke").GetParameters().Length > 1)
             {
@@ -82,19 +78,15 @@ namespace NightShopStockManager.Helpers.Behaviours
         void DeregisterEvent(string name)
         {
             if (string.IsNullOrWhiteSpace(name))
-            {
                 return;
-            }
 
             if (eventHandler == null)
-            {
                 return;
-            }
+
             EventInfo eventInfo = AssociatedObject.GetType().GetRuntimeEvent(name);
             if (eventInfo == null)
-            {
                 throw new ArgumentException(string.Format("EventToCommandBehavior: Can't de-register the '{0}' event.", EventName));
-            }
+
             eventInfo.RemoveEventHandler(AssociatedObject, eventHandler);
             eventHandler = null;
         }
@@ -107,26 +99,19 @@ namespace NightShopStockManager.Helpers.Behaviours
         private void OnEventImplementation(object eventArgs)
         {
             if (Command == null)
-            {
                 return;
-            }
+
             object resolvedParameter;
+
             if (CommandParameter != null)
-            {
                 resolvedParameter = CommandParameter;
-            }
             else if (Converter != null)
-            {
                 resolvedParameter = Converter.Convert(eventArgs, typeof(object), null, null);
-            }
             else
-            {
                 resolvedParameter = eventArgs;
-            }
+
             if (Command.CanExecute(resolvedParameter))
-            {
                 Command.Execute(resolvedParameter);
-            }
         }
 
         void OnEventSingle(object eventArgs)
@@ -138,9 +123,7 @@ namespace NightShopStockManager.Helpers.Behaviours
         {
             var behavior = (EventToCommandBehavior)bindable;
             if (behavior.AssociatedObject == null)
-            {
                 return;
-            }
 
             string oldEventName = (string)oldValue;
             string newEventName = (string)newValue;

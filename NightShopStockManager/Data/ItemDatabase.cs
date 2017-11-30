@@ -40,9 +40,7 @@ namespace NightShopStockManager
         private async Task CreateOrGetItems()
         {
             if (_items == null)
-            {
                 _items = await database.Table<Item>().ToListAsync();
-            }
         }
 
         public async Task<List<Item>> SearchItemsAsync(string search)
@@ -58,9 +56,8 @@ namespace NightShopStockManager
             {
                 var found = _items.SingleOrDefault(x => x.ID == item.ID);
                 if (found != null)
-                {
                     _items.Remove(found);
-                }
+
                 _items.Add(item);
                 var lst = _combinedStockItems.Where(x => x.Item == item.ID);
                 foreach(var combo in lst)
@@ -88,9 +85,8 @@ namespace NightShopStockManager
             await CreateOrGetCombinedStockItems();
             var found = _items.SingleOrDefault(x => x.ID == id);
             if (found != null)
-            {
                 _items.Remove(found);
-            }
+
             var foundStock = _combinedStockItems.Where(x => x.Item == id);
             foreach (var stock in foundStock)
             {
@@ -125,9 +121,8 @@ namespace NightShopStockManager
                 query = items.Where(x => (x.Name != null && x.Name.ToLower().Contains(searchToLower)) || (x.Barcode != null && x.Barcode.Contains(searchToLower)) || (x.SupplierName != null && x.SupplierName.ToLower().Contains(searchToLower)));
             }
             if (warning)
-            {
                 query = query.Where(x => x.ExpiryDate <= DateTime.Now);
-            }
+
             return query.ToList();
         }
 
@@ -142,7 +137,7 @@ namespace NightShopStockManager
                 var sup = suppliers.SingleOrDefault(x => x.ID == stItem.Supplier);
                 if (itm != null && sup != null)
                 {
-                    result.Add(new CombinedStockItem()
+                    result.Add(new CombinedStockItem
                     {
                         ID = stItem.ID,
                         Item = stItem.Item,
@@ -195,9 +190,7 @@ namespace NightShopStockManager
             await CreateOrGetCombinedStockItems();
             var found = _combinedStockItems.SingleOrDefault(x => x.ID == id);
             if (found != null)
-            {
                 _combinedStockItems.Remove(found);
-            }
         }
 
         public async Task<int> DeleteStockItemAsync(CombinedStockItem item)
@@ -208,7 +201,7 @@ namespace NightShopStockManager
 
         public async Task<int> AddThowAwayRecord(CombinedStockItem item)
         {
-            var rec = new ThrowAwayRecord()
+            var rec = new ThrowAwayRecord
             {
                 Amount = item.CurrentCount,
                 DateTime = DateTime.Now,
@@ -227,9 +220,8 @@ namespace NightShopStockManager
         public async Task<List<Supplier>> GetSuppliersAsync()
         {
             if (_suppliers == null)
-            {
                 _suppliers = await database.Table<Supplier>().ToListAsync();
-            }
+
             return _suppliers;
         }
 
@@ -246,14 +238,12 @@ namespace NightShopStockManager
             {
                 var found = _suppliers.SingleOrDefault(x => x.ID == supplier.ID);
                 if (found != null)
-                {
                     _suppliers.Remove(found);
-                }
+
                 var lst = _combinedStockItems.Where(x => x.Supplier == supplier.ID);
                 foreach (var combo in lst)
-                {
                     combo.SupplierName = supplier.Name;
-                }
+
                 _suppliers.Add(supplier);
                 return database.UpdateAsync(supplier);
             }
@@ -275,9 +265,8 @@ namespace NightShopStockManager
             await CreateOrGetCombinedStockItems();
             var found = _suppliers.SingleOrDefault(x => x.ID == id);
             if (found != null)
-            {
                 _suppliers.Remove(found);
-            }
+
             var foundStock = _combinedStockItems.Where(x => x.Supplier == id);
             foreach (var stock in foundStock)
             {
@@ -347,7 +336,7 @@ namespace NightShopStockManager
                 var found = _items.SingleOrDefault(x => x.ID == itm.ID);
                 if (found != null)
                 {
-                    cRecs.Add(new CombinedRecordItem()
+                    cRecs.Add(new CombinedRecordItem
                     {
                         Name = found.Name,
                         Item = found.ID,
@@ -370,7 +359,7 @@ namespace NightShopStockManager
                 var found = _items.SingleOrDefault(x => x.ID == itm.ID);
                 if (found != null)
                 {
-                    cRecs.Add(new CombinedThrowAwayRecord()
+                    cRecs.Add(new CombinedThrowAwayRecord
                     {
                         Name = found.Name,
                         Item = found.ID,

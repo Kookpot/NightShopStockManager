@@ -63,7 +63,7 @@ namespace NightShopStockManager.ViewModels
                 var sumItems = new RangeEnabledObservableCollection<SummaryItem>();
                 foreach (var id in items.Keys) {
                     var dbItem = await App.Database.GetItemByIdAsync(id);
-                    sumItems.Add(new SummaryItem()
+                    sumItems.Add(new SummaryItem
                     {
                         Amount = items[id],
                         SellPrice = dbItem.SellPrice,

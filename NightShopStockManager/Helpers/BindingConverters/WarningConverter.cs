@@ -8,11 +8,7 @@ namespace NightShopStockManager.Helpers.BindingConverters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((bool) value)
-            {
-                return Color.Red;
-            }
-            return Color.Black;
+            return (bool)value ? Color.Red : Color.Black;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

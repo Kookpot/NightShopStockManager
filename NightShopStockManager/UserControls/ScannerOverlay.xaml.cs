@@ -93,7 +93,9 @@ namespace NightShopStockManager
         private static void OnCounterChanged(BindableObject bindable, object oldvalue, object newValue)
         {
             var overlay = bindable as ScannerOverlay;
-            if (overlay?.number == null) return;
+            if (overlay?.number == null)
+                return;
+
             overlay.number.Text = newValue.ToString();
         }
 
@@ -113,7 +115,9 @@ namespace NightShopStockManager
         private static void OnTotalChanged(BindableObject bindable, object oldvalue, object newValue)
         {
             var overlay = bindable as ScannerOverlay;
-            if (overlay?.total == null) return;
+            if (overlay?.total == null)
+                return;
+
             overlay.total.Text = (string) newValue;
         }
 
@@ -166,7 +170,9 @@ namespace NightShopStockManager
         private static void OnPlusCommandChanged(BindableObject bindable, object oldvalue, object newValue)
         {
             var overlay = bindable as ScannerOverlay;
-            if (overlay?.plus == null) return;
+            if (overlay?.plus == null)
+                return;
+
             overlay.plus.Command = newValue as Command;
         }
 
@@ -183,7 +189,9 @@ namespace NightShopStockManager
         private static void OnMinusCommandChanged(BindableObject bindable, object oldvalue, object newValue)
         {
             var overlay = bindable as ScannerOverlay;
-            if (overlay?.minus == null) return;
+            if (overlay?.minus == null)
+                return;
+
             overlay.minus.Command = newValue as Command;
         }
 
@@ -200,7 +208,9 @@ namespace NightShopStockManager
         private static void OnDoneCommandChanged(BindableObject bindable, object oldvalue, object newValue)
         {
             var overlay = bindable as ScannerOverlay;
-            if (overlay?.done == null) return;
+            if (overlay?.done == null)
+                return;
+
             overlay.done.Command = newValue as Command;
         }
 
@@ -217,7 +227,9 @@ namespace NightShopStockManager
         private static void OnCancelCommandChanged(BindableObject bindable, object oldvalue, object newValue)
         {
             var overlay = bindable as ScannerOverlay;
-            if (overlay?.cancel == null) return;
+            if (overlay?.cancel == null)
+                return;
+
             overlay.cancel.Command = newValue as Command;
         }
 
@@ -234,7 +246,9 @@ namespace NightShopStockManager
         private static void OnSummaryCommandChanged(BindableObject bindable, object oldvalue, object newValue)
         {
             var overlay = bindable as ScannerOverlay;
-            if (overlay?.summary == null) return;
+            if (overlay?.summary == null)
+                return;
+
             overlay.summary.Command = newValue as Command;
         }
     }

@@ -49,7 +49,7 @@ namespace NightShopStockManager.ViewModels
         private async Task OnSave()
         {
             await App.Database.SaveItemAsync(Item);
-            var parameters = new NavigationParameters()
+            var parameters = new NavigationParameters
             {
                 {"Item", Item }
             };
@@ -100,18 +100,14 @@ namespace NightShopStockManager.ViewModels
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             _parameters = parameters;
+
             if (parameters.ContainsKey("Item"))
-            {
                 Item = ((Item)parameters["Item"]).Clone();
-            }
             else
-            {
                 Item = new Item();
-            }
+
             if (parameters.ContainsKey("Barcode"))
-            {
                 Item.Barcode = (string)parameters["Barcode"];
-            }
         }
 
         #endregion

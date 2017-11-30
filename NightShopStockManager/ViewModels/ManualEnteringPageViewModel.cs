@@ -30,8 +30,7 @@ namespace NightShopStockManager.ViewModels
 
         #region Constructor 
 
-        public ManualEnteringPageViewModel(INavigationService navigationService) : base(navigationService)
-        { }
+        public ManualEnteringPageViewModel(INavigationService navigationService) : base(navigationService) { }
 
         #endregion
     }

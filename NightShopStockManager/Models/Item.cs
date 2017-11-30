@@ -27,14 +27,12 @@ namespace NightShopStockManager
         protected void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
-            {
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
-            }
         }
 
         public Item Clone()
         {
-            return new Item()
+            return new Item
             {
                 ID = ID,
                 Name = Name,

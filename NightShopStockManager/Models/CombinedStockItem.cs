@@ -86,14 +86,12 @@ namespace NightShopStockManager
         protected void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
-            {
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
-            }
         }
 
         public BuyRecord CreateBuyRecord()
         {
-            return new BuyRecord()
+            return new BuyRecord
             {
                 ID = ID,
                 Item = Item,
@@ -107,7 +105,7 @@ namespace NightShopStockManager
 
         public StockItem CreateStockItem()
         {
-            return new StockItem()
+            return new StockItem
             {
                 ID = ID,
                 Item = Item,
@@ -120,7 +118,7 @@ namespace NightShopStockManager
 
         public CombinedStockItem Clone()
         {
-            return new CombinedStockItem()
+            return new CombinedStockItem
             {
                 ID = ID,
                 Name = Name,

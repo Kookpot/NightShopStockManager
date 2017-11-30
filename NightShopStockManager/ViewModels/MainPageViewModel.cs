@@ -117,6 +117,6 @@ namespace NightShopStockManager.ViewModels
 
         public MainPageViewModel(INavigationService navigationService) : base(navigationService) { }
 
-#endregion
+        #endregion
     }
 }

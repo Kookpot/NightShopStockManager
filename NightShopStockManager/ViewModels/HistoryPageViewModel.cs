@@ -68,9 +68,8 @@ namespace NightShopStockManager.ViewModels
                     StringFormat = "d/M"
                 });
                 foreach (var soldItem in sold)
-                {
                     lineSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(soldItem.Key), soldItem.Value));
-                }
+
                 plot.Series.Add(lineSeries);
                 Model = plot;
             }
@@ -111,9 +110,7 @@ namespace NightShopStockManager.ViewModels
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             if (parameters.ContainsKey("Item"))
-            {
                 Item = (Item)parameters["Item"];
-            }
         }
 
         #endregion

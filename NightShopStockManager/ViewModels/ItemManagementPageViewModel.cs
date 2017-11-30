@@ -92,23 +92,20 @@ namespace NightShopStockManager.ViewModels
 
         public async override void OnNavigatedTo(NavigationParameters parameters) {
             Items = new RangeEnabledObservableCollection<Item>();
+
             if (parameters.ContainsKey("Barcode"))
-            {
                 SearchValue = (string)parameters["Barcode"];
-            }
+
             if (parameters.ContainsKey("Select"))
             {
                 _parameters = parameters;
                 _select = (bool)parameters["Select"];
             }
+
             if (string.IsNullOrEmpty(SearchValue))
-            {
                 Items.InsertRange(await App.Database.GetItemsAsync());
-            }
             else
-            {
                 await Search();
-            }
         }
 
         private async Task OnItemSelect(Item itm)

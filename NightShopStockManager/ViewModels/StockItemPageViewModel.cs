@@ -89,7 +89,7 @@ namespace NightShopStockManager.ViewModels
 
         #endregion
 
-        #region Supploir Search
+        #region Supplier Search
 
         private Command _supplierSearch;
         public Command SupplierSearch
@@ -116,17 +116,12 @@ namespace NightShopStockManager.ViewModels
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             _parameters = parameters;
+
             if (parameters.ContainsKey("StockItem"))
-            {
                 StockItem = (CombinedStockItem)parameters["StockItem"];
-            }
             else
-            {
-                StockItem = new CombinedStockItem
-                {
-                    ExpiryDate = DateTime.Now
-                };
-            }
+                StockItem = new CombinedStockItem { ExpiryDate = DateTime.Now };
+
             if (parameters.ContainsKey("Item"))
             {
                 var itm = (Item)parameters["Item"];

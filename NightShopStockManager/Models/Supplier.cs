@@ -10,7 +10,7 @@ namespace NightShopStockManager
 
         public Supplier Clone()
         {
-            return new Supplier()
+            return new Supplier
             {
                 ID = ID,
                 Name = Name

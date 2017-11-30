@@ -198,8 +198,7 @@ namespace NightShopStockManager.ViewModels
                         {
                             await App.Database.DeleteStockItemAsync(first);
                             count -= first.CurrentCount;
-                            stockItems.Remove(first);
-                            
+                            stockItems.Remove(first);                        
                         }
                         else
                         {
@@ -210,7 +209,7 @@ namespace NightShopStockManager.ViewModels
                     }
                 }
 
-                var recordId = await App.Database.SaveRecordItemAsync(new RecordItem()
+                var recordId = await App.Database.SaveRecordItemAsync(new RecordItem
                 {
                     DateTime = DateTime.Now,
                     SellPrice = itm.SellPrice,
@@ -240,13 +239,10 @@ namespace NightShopStockManager.ViewModels
             if (item != null)
             {
                 if (_currentItems.ContainsKey(item.ID))
-                {
                     _currentItems[item.ID]++;
-                }
                 else
-                {
                     _currentItems.Add(item.ID, 1);
-                }
+
                 _lastItem = item;
                 BackGroundColor = Color.DarkOliveGreen;
                 DependencyService.Get<IMedia>().PlayOk();
@@ -261,7 +257,7 @@ namespace NightShopStockManager.ViewModels
             }
             Device.BeginInvokeOnMainThread(() =>
             {
-                Device.StartTimer(new System.TimeSpan(0, 0, 1), () =>
+                Device.StartTimer(new TimeSpan(0, 0, 1), () =>
                 {
                     BackGroundColor = Color.Transparent;
                     return false;
@@ -272,21 +268,16 @@ namespace NightShopStockManager.ViewModels
         public override async void OnNavigatedTo(NavigationParameters parameters)
         {
             if (parameters.ContainsKey("Barcode"))
-            {
                 await HandleBarcode((string)parameters["Barcode"]);
-            }
+
             if (parameters.ContainsKey("LastItem"))
-            {
                 _lastItem = (Item)parameters["LastItem"];
-            }
+
             if (parameters.ContainsKey("Counter"))
-            {
                 Counter = (int)parameters["Counter"];
-            }
+
             if (parameters.ContainsKey("CurrentItems"))
-            {
                 _currentItems = (Dictionary<int, int>)parameters["CurrentItems"];
-            }
         }
 
         #endregion

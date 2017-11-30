@@ -50,7 +50,7 @@ namespace NightShopStockManager.ViewModels
         private async Task OnSave()
         {
             await App.Database.SaveSupplierAsync(Supplier);
-            var parameters = new NavigationParameters()
+            var parameters = new NavigationParameters
             {
                 {"Supplier", Supplier }
             };
@@ -86,14 +86,11 @@ namespace NightShopStockManager.ViewModels
         public override void OnNavigatedTo(NavigationParameters parameters)
         {
             _parameters = parameters;
+
             if (parameters.ContainsKey("Supplier"))
-            {
                 Supplier = ((Supplier)parameters["Supplier"]).Clone();
-            }
             else
-            {
                 Supplier = new Supplier();
-            }
         }
 
         #endregion

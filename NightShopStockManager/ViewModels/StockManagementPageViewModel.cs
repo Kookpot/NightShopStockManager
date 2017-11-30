@@ -104,17 +104,12 @@ namespace NightShopStockManager.ViewModels
         {
             Items = new RangeEnabledObservableCollection<CombinedStockItem>();
             if (parameters.ContainsKey("Barcode"))
-            {
                 SearchValue = (string)parameters["Barcode"];
-            }
+
             if (string.IsNullOrEmpty(SearchValue))
-            {
                 Items.InsertRange(await App.Database.GetStockItemsAsync());
-            }
             else
-            {
                 await Search();
-            }
         }
 
         private async Task OnItemSelect(CombinedStockItem itm)

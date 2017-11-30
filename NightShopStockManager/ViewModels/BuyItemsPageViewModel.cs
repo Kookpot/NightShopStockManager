@@ -78,7 +78,7 @@ namespace NightShopStockManager.ViewModels
             var item = (await App.Database.SearchItemsAsync(barcode)).FirstOrDefault();
             if (item != null)
             {
-                var parameters = new NavigationParameters()
+                var parameters = new NavigationParameters
                 {
                     {"Item", item }
                 };
@@ -89,7 +89,7 @@ namespace NightShopStockManager.ViewModels
             }
             else
             {
-                var parameters = new NavigationParameters()
+                var parameters = new NavigationParameters
                 {
                     {"Barcode", barcode }
                 };

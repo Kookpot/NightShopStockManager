@@ -13,9 +13,7 @@ namespace NightShopStockManager.Helpers.Behaviours
             AssociatedObject = bindable;
 
             if (bindable.BindingContext != null)
-            {
                 BindingContext = bindable.BindingContext;
-            }
 
             bindable.BindingContextChanged += OnBindingContextChanged;
         }

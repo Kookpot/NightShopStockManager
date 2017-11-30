@@ -52,9 +52,8 @@ namespace NightShopStockManager.ViewModels
             var recordItems = await App.Database.GetRecordItemsAsync();
             stringBuilder.AppendLine("ItemId;Name;DateTime;Amount;SellPrice;TotalPrice");
             foreach (var itm in recordItems)
-            {
                 stringBuilder.AppendLine($"{itm.Item};{itm.Name};{itm.DateTime.ToString("dd/MM/yyyy HH:mm:ss")};{itm.Amount};{itm.SellPrice};{itm.TotalPrice}");
-            }
+
 #if UWP
             await DependencyService.Get<IFileHelper_WinApp>().SaveFileAsync($"export_sales_{DateTime.Now.ToString("yyyyMMdd_HH_mm_ss")}.csv", stringBuilder.ToString());
 #else
@@ -65,9 +64,8 @@ namespace NightShopStockManager.ViewModels
             var buyRecords = await App.Database.GetBuyRecordsAsync();
             stringBuilder2.AppendLine("ItemId;Name;SupplierId;SupplierName;DateTime;Amount;BuyPrice/p.Item;TotalPrice");
             foreach (var itm in buyRecords)
-            {
                 stringBuilder2.AppendLine($"{itm.Item};{itm.Name};{itm.Supplier};{itm.SupplierName};{itm.DateTime.ToString("dd/MM/yyyy HH:mm:ss")};{itm.Amount};{itm.BuyPrice};{itm.TotalPrice}");
-            }
+
 #if UWP
             await DependencyService.Get<IFileHelper_WinApp>().SaveFileAsync($"export_buy_{DateTime.Now.ToString("yyyyMMdd_HH_mm_ss")}.csv", stringBuilder2.ToString());
 #else
@@ -78,9 +76,8 @@ namespace NightShopStockManager.ViewModels
             var throwAwayRecords = await App.Database.GetThrowAwayRecordAsync();
             stringBuilder3.AppendLine("ItemId;Name;DateTime;Amount;BuyPrice/p.Item;TotalPrice");
             foreach (var itm in throwAwayRecords)
-            {
                 stringBuilder3.AppendLine($"{itm.Item};{itm.Name};{itm.DateTime.ToString("dd/MM/yyyy HH:mm:ss")};{itm.Amount};{itm.BuyPrice};{itm.TotalPrice}");
-            }
+
 #if UWP
             await DependencyService.Get<IFileHelper_WinApp>().SaveFileAsync($"export_throwaway_{DateTime.Now.ToString("yyyyMMdd_HH_mm_ss")}.csv", stringBuilder3.ToString());
 #else
