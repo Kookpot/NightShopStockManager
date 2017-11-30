@@ -4,7 +4,8 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:b="clr-namespace:NightShopStockManager.Helpers.BindingConverters;assembly=NightShopStockManager"
-             x:Class="NightShopStockManager.Views.SupplierManagementPage" Title="Manage suppliers">
+             x:Class="NightShopStockManager.Views.SupplierManagementPage" 
+             Title="Manage suppliers">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="DefaultListView" TargetType="ListView">
