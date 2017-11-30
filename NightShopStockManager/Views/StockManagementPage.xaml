@@ -12,7 +12,7 @@
             <b:SimpleDateConverter x:Key="SimpleDateConverter"/>
             <b:WarningConverter x:Key="WarningConverter"/>
             <Style x:Key="DefaultListView" TargetType="ListView">
-                <Setter Property="Margin" Value="20"/>
+                <Setter Property="Margin" Value="0"/>
             </Style>
             <Style x:Key="DefaultStackLayout" TargetType="StackLayout">
                 <Setter Property="Margin" Value="5"/>
@@ -26,6 +26,7 @@
                 <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="End"/>
+                <Setter Property="Margin" Value="2,0,0,0"/>
             </Style>
             <Style x:Key="LeftLabel" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="Start"/>
@@ -42,6 +43,9 @@
             <Style x:Key="BarcodeButton" TargetType="Entry">
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="WidthRequest" Value="30"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="Margin" Value="0"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -60,11 +64,11 @@
                        Style="{StaticResource LeftLabel}"/>
                 <Entry Text="{Binding SearchValue}"
                        x:Name="SearchEntry"
-                       Placeholder="Search on name, suppliername or barcode"
+                       Placeholder="Name/supplier/barcode"
                        Style="{StaticResource BarcodeEntry}"/>
                 <Button Command="{Binding BarcodeSearch}"
                         Style="{StaticResource BarcodeButton}"
-                        Image="barcodesearch.png"/>
+                        Image="barcodesearchSmall.png"/>
             </StackLayout>
             <StackLayout Style="{StaticResource BarcodeStackLayout}">
                 <Label Text="Only warnings"
@@ -84,28 +88,24 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Label Text="Name"
                                Grid.Column="0"
                                Style="{StaticResource DefaultLabel}"/>
-                        <Label Text="Supplier Name"
+                        <Label Text="Sup."
                                Grid.Column="1"
                                Style="{StaticResource DefaultLabel}"/>
-                        <Label Text="Current Count"
+                        <Label Text="Count"
                                Grid.Column="2"
                                Style="{StaticResource DefaultLabel}"/>
-                        <Label Text="Expiry Date"
+                        <Label Text="Exp."
                                Grid.Column="3"
                                Style="{StaticResource DefaultLabel}"/>
-                        <Label Text="Buy Price/p. item"
+                        <Label Text="Buy $"
                                Grid.Column="4"
                                Style="{StaticResource DefaultLabel}"/>
-                        <Label Text="Total Buy Price"
+                        <Label Text="Sell $"
                                Grid.Column="5"
-                               Style="{StaticResource DefaultLabel}"/>
-                        <Label Text="Sell Price"
-                               Grid.Column="6"
                                Style="{StaticResource DefaultLabel}"/>
                     </Grid>
                 </ListView.Header>
@@ -114,7 +114,6 @@
                         <ViewCell>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
@@ -137,9 +136,6 @@
                                        Style="{StaticResource DefaultLabel}"/>
                                 <Label Text="{Binding BuyPrice, Converter={StaticResource EuroConverter}}" 
                                        Grid.Column="4"
-                                       Style="{StaticResource DefaultLabel}"/>
-                                <Label Text="{Binding TotalPrice, Converter={StaticResource EuroConverter}}" 
-                                       Grid.Column="5"
                                        Style="{StaticResource DefaultLabel}"/>
                                 <Label Text="{Binding SellPrice, Converter={StaticResource EuroConverter}}" 
                                        Grid.Column="6"

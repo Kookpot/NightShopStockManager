@@ -1,6 +1,8 @@
 ﻿using Prism.Navigation;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace NightShopStockManager.ViewModels
 {
@@ -20,6 +22,21 @@ namespace NightShopStockManager.ViewModels
         public decimal TotalPrice
         {
             get { return _items == null ? 0 : _items.Sum(x => x.TotalPrice); }
+        }
+
+        #endregion
+
+        #region Command cancel
+
+        private Command _cancel;
+        public Command Cancel
+        {
+            get { return _cancel ?? (_cancel = new Command(async () => await OnCancel())); }
+        }
+
+        private async Task OnCancel()
+        {
+            await _navigationService.GoBackAsync();
         }
 
         #endregion

@@ -10,7 +10,7 @@
         <ResourceDictionary>
             <b:EuroConverter x:Key="EuroConverter"/>
             <Style x:Key="DefaultListView" TargetType="ListView">
-                <Setter Property="Margin" Value="20"/>
+                <Setter Property="Margin" Value="0"/>
             </Style>
             <Style x:Key="TotalLayout" TargetType="StackLayout">
                 <Setter Property="Orientation" Value="Horizontal"/>
@@ -28,6 +28,7 @@
                 <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
                 <Setter Property="HorizontalTextAlignment" Value="End"/>
+                <Setter Property="Margin" Value="2,0,0,0"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -50,7 +51,7 @@
                         <Label Text="Amount"
                                Grid.Column="1"
                                Style="{StaticResource DefaultLabel}"/>
-                        <Label Text="Price per item"
+                        <Label Text="Price item"
                                Grid.Column="2"
                                Style="{StaticResource DefaultLabel}"/>
                         <Label Text="Total price"

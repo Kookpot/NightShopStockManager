@@ -16,8 +16,9 @@ namespace NightShopStockManager.Droid
 
         public void SaveFile(string filename, string text)
         {
-            var documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-            var filePath = Path.Combine(documentsPath, filename);
+            var documentsPath = Android.OS.Environment.ExternalStorageDirectory.AbsolutePath;
+            Directory.CreateDirectory(documentsPath + "/DCIM/Data_NightShop");
+            var filePath = Path.Combine(documentsPath + "/DCIM/Data_NightShop", filename);
             File.WriteAllText(filePath, text);
         }
     }

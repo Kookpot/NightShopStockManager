@@ -13,9 +13,11 @@ namespace NightShopStockManager
 		{
 			base.OnCreate(bundle);
 
-			global::Xamarin.Forms.Forms.Init(this, bundle);
+            Xamarin.Forms.Forms.Init(this, bundle);
+            OxyPlot.Xamarin.Forms.Platform.Android.PlotViewRenderer.Init();
+            ZXing.Net.Mobile.Forms.Android.ZXingScannerViewRenderer.Init();
 
-			LoadApplication(new App());
+            LoadApplication(new App());
 		}
 	}
 }

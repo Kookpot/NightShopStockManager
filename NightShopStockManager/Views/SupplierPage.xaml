@@ -14,16 +14,18 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource DefaultStackLayout}">
-		    <Label Text="Name" />
-            <Entry Text="{Binding Supplier.Name}"/>
-            <Button Text="Save" 
-                    Command="{Binding Save}"/>
-		    <Button Text="Delete"
-                    IsVisible="{Binding CanDelete}"
-                    Command="{Binding Delete}"/>
-            <Button Text="Cancel" 
-                    Command="{Binding Cancel}"/>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Style="{StaticResource DefaultStackLayout}">
+		        <Label Text="Name" />
+                <Entry Text="{Binding Supplier.Name}"/>
+                <Button Text="Save" 
+                        Command="{Binding Save}"/>
+		        <Button Text="Delete"
+                        IsVisible="{Binding CanDelete}"
+                        Command="{Binding Delete}"/>
+                <Button Text="Cancel" 
+                        Command="{Binding Cancel}"/>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

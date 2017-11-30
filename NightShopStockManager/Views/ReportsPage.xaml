@@ -8,6 +8,7 @@
         <ResourceDictionary>
             <Style x:Key="DefaultFrame" TargetType="Frame">
                 <Setter Property="Padding" Value="10"/>
+                <Setter Property="CornerRadius" Value="0"/>
                 <Setter Property="BackgroundColor" Value="{DynamicResource Green}"/>
             </Style>
             <Style x:Key="DefaultStackLayout" TargetType="StackLayout">
@@ -18,7 +19,7 @@
             <Style x:Key="DefaultNavButton" TargetType="Button">
                 <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
                 <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
-                <Setter Property="WidthRequest" Value="400"/>
+                <Setter Property="WidthRequest" Value="300"/>
                 <Setter Property="BackgroundColor" Value="{DynamicResource Green}"/>
                 <Setter Property="TextColor" Value="{DynamicResource White}"/>
                 <Setter Property="FontSize" Value="Large"/>

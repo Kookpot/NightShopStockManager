@@ -17,13 +17,14 @@
             </Style>
             <Style x:Key="BarcodeEntry" TargetType="Entry">
                 <Setter Property="VerticalOptions" Value="Center"/>
-                <Setter Property="HeightRequest" Value="32"/>
+                <Setter Property="HeightRequest" Value="36"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource DefaultStackLayout}">
+        <ScrollView>
+            <StackLayout Style="{StaticResource DefaultStackLayout}">
 		    <Label Text="Name" />
             <Entry Text="{Binding Item.Name}"/>
             <Label Text="Barcode"/>
@@ -43,5 +44,6 @@
             <Button Text="Cancel" 
                     Command="{Binding Cancel}"/>
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

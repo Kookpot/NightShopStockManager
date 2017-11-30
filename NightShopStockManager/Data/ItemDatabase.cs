@@ -49,7 +49,7 @@ namespace NightShopStockManager
         {
             var items = await GetItemsAsync();
             var searchToLower = search.ToLower();
-            return items.Where(x => x.Name.ToLower().Contains(searchToLower) || x.Barcode.Contains(searchToLower)).ToList();
+            return items.Where(x => (x.Name != null && x.Name.ToLower().Contains(searchToLower)) || (x.Barcode != null && x.Barcode.Contains(searchToLower))).ToList();
         }
 
         public Task<int> SaveItemAsync(Item item)
@@ -122,7 +122,7 @@ namespace NightShopStockManager
             if (!string.IsNullOrEmpty(search))
             {
                 var searchToLower = search.ToLower();
-                query = items.Where(x => x.Name.ToLower().Contains(searchToLower) || x.Barcode.Contains(searchToLower) || x.SupplierName.ToLower().Contains(searchToLower));
+                query = items.Where(x => (x.Name != null && x.Name.ToLower().Contains(searchToLower)) || (x.Barcode != null && x.Barcode.Contains(searchToLower)) || (x.SupplierName != null && x.SupplierName.ToLower().Contains(searchToLower)));
             }
             if (warning)
             {
@@ -237,7 +237,7 @@ namespace NightShopStockManager
         {
             var suppliers = await GetSuppliersAsync();
             var searchToLower = search.ToLower();
-            return suppliers.Where(x => x.Name.ToLower().Contains(searchToLower)).ToList();
+            return suppliers.Where(x => x.Name != null && x.Name.ToLower().Contains(searchToLower)).ToList();
         }
 
         public Task<int> SaveSupplierAsync(Supplier supplier)
@@ -321,15 +321,15 @@ namespace NightShopStockManager
 
         public async Task<Dictionary<DateTime, int>> GetSoldDataAsync(Item itm, DateTime start, DateTime end)
         {
-            var itms = (await database.QueryAsync<RecordItem>($"SELECT * FROM [RecordItem] WHERE Item = ? AND DateTime > ? AND DateTime < ?", itm.ID, start.Ticks, end.AddDays(1).Ticks));
             var result = new Dictionary<DateTime, int>();
+            var itms = (await database.QueryAsync<RecordItem>($"SELECT * FROM [RecordItem] WHERE Item = ? AND DateTime > ? AND DateTime < ?", itm.ID, start.Ticks, end.AddDays(1).Ticks));
             var currentDate = start;
-            while(currentDate <= end)
+            while (currentDate <= end)
             {
                 result.Add(currentDate, 0);
                 currentDate = currentDate.AddDays(1);
             }
-            foreach(var recordItm in itms)
+            foreach (var recordItm in itms)
             {
                 var date = new DateTime(recordItm.DateTime.Year, recordItm.DateTime.Month, recordItm.DateTime.Day);
                 result[date] += recordItm.Amount;
@@ -395,17 +395,21 @@ namespace NightShopStockManager
                 var found = _items.SingleOrDefault(x => x.ID == itm.ID);
                 var foundSupplier = _suppliers.SingleOrDefault(x => x.ID == itm.Supplier);
                 if (found != null) {
-                    cRecs.Add(new CombinedBuyRecord()
+                    var comb = new CombinedBuyRecord
                     {
                         Name = found.Name,
                         Item = found.ID,
-                        Supplier = foundSupplier.ID,
-                        SupplierName = foundSupplier.Name,
                         Amount = itm.Amount,
                         DateTime = itm.DateTime,
                         BuyPrice = itm.BuyPrice,
                         TotalPrice = itm.TotalPrice
-                    });
+                    };
+                    if (foundSupplier != null)
+                    {
+                        comb.Supplier = foundSupplier.ID;
+                        comb.SupplierName = foundSupplier.Name;
+                    }
+                    cRecs.Add(comb);
                 }
             }
             return cRecs;

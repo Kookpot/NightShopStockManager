@@ -1,9 +1,8 @@
 ﻿using Xamarin.Forms;
 using Android.Media;
-using Android;
 using NightShopStockManager;
 
-[assembly: Dependency(typeof(IMedia))]
+[assembly: Dependency(typeof(MediaService))]
 namespace NightShopStockManager
 {
     public class MediaService : IMedia

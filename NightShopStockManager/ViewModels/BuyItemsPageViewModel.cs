@@ -10,8 +10,6 @@ namespace NightShopStockManager.ViewModels
     {
         #region Members
 
-        private NavigationParameters _parameters;
-
         private bool _isAnalyzing;
         public bool IsAnalyzing
         {
@@ -115,6 +113,7 @@ namespace NightShopStockManager.ViewModels
             else
             {
                 IsScanning = true;
+                IsAnalyzing = true;
             }
         }
 

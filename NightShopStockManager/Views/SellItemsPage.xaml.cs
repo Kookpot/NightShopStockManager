@@ -21,12 +21,12 @@ namespace NightShopStockManager.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            ScannerView.IsScanning = true;
+            //ScannerView.IsScanning = true;
         }
 
         protected override void OnDisappearing()
         {
-            ScannerView.IsScanning = false;
+            //ScannerView.IsScanning = false;
             base.OnDisappearing();
         }
 

@@ -53,23 +53,27 @@ namespace NightShopStockManager.ViewModels
 
         private async Task OnShowData()
         {
-            var sold = await App.Database.GetSoldDataAsync(Item, StartDate, EndDate);
-            var total = sold.Values.Sum();
-            var plot = new PlotModel { Title = $"{total} {Item.Name} Sold between {StartDate.ToString("dd/MM/yy")}-{EndDate.ToString("dd/MM/yy")} per day" };
-            var lineSeries = new LineSeries { StrokeThickness = 2.0 };
-            plot.Axes.Add(new DateTimeAxis
+            if (Item != null)
             {
-                Position = AxisPosition.Bottom,
-                Minimum = DateTimeAxis.ToDouble(StartDate),
-                Maximum = DateTimeAxis.ToDouble(EndDate),
-                IntervalType = DateTimeIntervalType.Days,
-                StringFormat = "d/M"
-            });            foreach(var soldItem in sold)
-            {
-                lineSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(soldItem.Key), soldItem.Value));
+                var sold = await App.Database.GetSoldDataAsync(Item, StartDate, EndDate);
+                var total = sold.Values.Sum();
+                var plot = new PlotModel { Title = $"{total} {Item.Name} Sold between {StartDate.ToString("dd/MM/yy")}-{EndDate.ToString("dd/MM/yy")} per day", TitleFontSize=8 };
+                var lineSeries = new LineSeries { StrokeThickness = 2.0 };
+                plot.Axes.Add(new DateTimeAxis
+                {
+                    Position = AxisPosition.Bottom,
+                    Minimum = DateTimeAxis.ToDouble(StartDate),
+                    Maximum = DateTimeAxis.ToDouble(EndDate),
+                    IntervalType = DateTimeIntervalType.Days,
+                    StringFormat = "d/M"
+                });
+                foreach (var soldItem in sold)
+                {
+                    lineSeries.Points.Add(new DataPoint(DateTimeAxis.ToDouble(soldItem.Key), soldItem.Value));
+                }
+                plot.Series.Add(lineSeries);
+                Model = plot;
             }
-            plot.Series.Add(lineSeries);
-            Model = plot;
         }
 
         #endregion
@@ -100,9 +104,7 @@ namespace NightShopStockManager.ViewModels
             StartDate = EndDate.AddDays(-6);
         }
 
-        #endregion
-
-        
+        #endregion        
 
         #region Methods
 

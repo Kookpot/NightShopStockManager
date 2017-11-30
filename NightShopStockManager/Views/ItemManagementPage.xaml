@@ -9,7 +9,7 @@
         <ResourceDictionary>
             <b:EuroConverter x:Key="EuroConverter"/>
             <Style x:Key="DefaultListView" TargetType="ListView">
-                <Setter Property="Margin" Value="20"/>
+                <Setter Property="Margin" Value="0"/>
             </Style>
             <Style x:Key="DefaultStackLayout" TargetType="StackLayout">
                 <Setter Property="Margin" Value="5"/>
@@ -22,6 +22,7 @@
             <Style x:Key="DefaultLabel" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="StartAndExpand"/>
                 <Setter Property="VerticalTextAlignment" Value="Center"/>
+                <Setter Property="Margin" Value="2,0,0,0"/>
             </Style>
             <Style x:Key="LeftLabel" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="Start"/>
@@ -38,6 +39,9 @@
             <Style x:Key="BarcodeButton" TargetType="Entry">
                 <Setter Property="VerticalOptions" Value="Center"/>
                 <Setter Property="HorizontalOptions" Value="End"/>
+                <Setter Property="WidthRequest" Value="30"/>
+                <Setter Property="HeightRequest" Value="30"/>
+                <Setter Property="Margin" Value="0"/>
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -52,15 +56,15 @@
     <ContentPage.Content>
         <StackLayout Style="{StaticResource DefaultStackLayout}">
             <StackLayout Style="{StaticResource BarcodeStackLayout}">
-                <Label Text="Search :"
+                <Label Text="Search:"
                        Style="{StaticResource LeftLabel}"/>
                 <Entry Text="{Binding SearchValue}"
                        x:Name="SearchEntry"
-                       Placeholder="Search on name or barcode"
+                       Placeholder="Search on name/barcode"
                        Style="{StaticResource BarcodeEntry}"/>
                 <Button Command="{Binding BarcodeSearch}"
                         Style="{StaticResource BarcodeButton}"
-                        Image="barcodesearch.png"/>
+                        Image="barcodesearchSmall.png"/>
             </StackLayout>
             <ListView x:Name="listView" 
                       ItemsSource="{Binding Items}"
@@ -79,7 +83,7 @@
                         <Label Text="Barcode"
                                Grid.Column="1"
                                Style="{StaticResource DefaultLabel}"/>
-                        <Label Text="Sell Price"
+                        <Label Text="Sell $"
                                Grid.Column="2"
                                Style="{StaticResource DefaultLabel}"/>
                     </Grid>
