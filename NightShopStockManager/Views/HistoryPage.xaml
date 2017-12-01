@@ -42,6 +42,18 @@
             <Label Text="End Date"/>
             <DatePicker Date="{Binding EndDate}"
                         MaximumDate="{Binding CurrentDate}"/>
+            <StackLayout Style="{StaticResource ItemStackLayout}">
+                <Label Text="Period"
+                       Style="{StaticResource ItemLabel}"/>
+                <Picker SelectedIndex="{Binding SelectedOption}">
+                    <Picker.Items>
+                        <x:String>Daily</x:String>
+                        <x:String>Weekly</x:String>
+                        <x:String>Monthly</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+            
             <Button Text="Show Data" 
                     Command="{Binding ShowData}"/>
             <oxy:PlotView Model="{Binding Model}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" />

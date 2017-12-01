@@ -56,9 +56,6 @@
                             Image="plus.png"/>
                 </StackLayout>
                 <StackLayout Style="{DynamicResource InnerEndOverlayStackLayout}">
-                    <Button x:Name="done" 
-                            Style="{DynamicResource PinkButton}" 
-                            Image="ic_done_white_48pt.png"/>
                     <Button x:Name="cancel" 
                             Style="{DynamicResource PinkButton}" 
                             Image="ic_cancel_white_48pt.png"/>
@@ -70,6 +67,9 @@
                            Style="{DynamicResource CounterLabel}"/>
                 </StackLayout>
                 <StackLayout Style="{DynamicResource InnerEndOverlayStackLayout}">
+                    <Button x:Name="done" 
+                            Style="{DynamicResource PinkButton}" 
+                            Image="ic_done_white_48pt.png"/>
                     <Button x:Name="summary" 
                             Style="{DynamicResource PinkButton}" 
                             Image="summary.png"/>

@@ -31,6 +31,7 @@
             <Grid Style="{StaticResource DefaultGrid}">
                 <barcode:ZXingScannerView Style="{StaticResource DefaultScannerView}" 
                                           x:Name="ScannerView"  
+                                          IsScanning="True"
                                           IsAnalyzing="{Binding IsAnalyzing}"
                                           ScanResultCommand="{Binding ScanResult}">
                 </barcode:ZXingScannerView>

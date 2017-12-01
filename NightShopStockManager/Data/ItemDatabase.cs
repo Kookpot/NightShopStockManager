@@ -50,7 +50,7 @@ namespace NightShopStockManager
             return items.Where(x => (x.Name != null && x.Name.ToLower().Contains(searchToLower)) || (x.Barcode != null && x.Barcode.Contains(searchToLower))).ToList();
         }
 
-        public Task<int> SaveItemAsync(Item item)
+        public async Task<int> SaveItemAsync(Item item)
         {
             if (item.ID != 0)
             {
@@ -65,12 +65,14 @@ namespace NightShopStockManager
                     combo.Name = item.Name;
                     combo.SellPrice = item.SellPrice;
                 }
-                return database.UpdateAsync(item);
+                return await database.UpdateAsync(item);
             }
             else
             {
                 _items.Add(item);
-                return database.InsertAsync(item);
+                var id = await database.InsertAsync(item);
+                item.ID = id;
+                return id;
             }
         }
 
@@ -172,7 +174,9 @@ namespace NightShopStockManager
             {
                 _combinedStockItems.Add(item);
                 await database.InsertAsync(item.CreateBuyRecord());
-                return await database.InsertAsync(item.CreateStockItem());
+                var id = await database.InsertAsync(item.CreateStockItem());
+                item.ID = id;
+                return id;
             }
         }
 
@@ -232,7 +236,7 @@ namespace NightShopStockManager
             return suppliers.Where(x => x.Name != null && x.Name.ToLower().Contains(searchToLower)).ToList();
         }
 
-        public Task<int> SaveSupplierAsync(Supplier supplier)
+        public async Task<int> SaveSupplierAsync(Supplier supplier)
         {
             if (supplier.ID != 0)
             {
@@ -245,12 +249,14 @@ namespace NightShopStockManager
                     combo.SupplierName = supplier.Name;
 
                 _suppliers.Add(supplier);
-                return database.UpdateAsync(supplier);
+                return await database.UpdateAsync(supplier);
             }
             else
             {
                 _suppliers.Add(supplier);
-                return database.InsertAsync(supplier);
+                var id = await database.InsertAsync(supplier);
+                supplier.ID = id;
+                return id;
             }
         }
 

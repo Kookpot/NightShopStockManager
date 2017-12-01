@@ -40,8 +40,12 @@ namespace NightShopStockManager
             {
                 if (CurrentCount > 0)
                 {
-                    _buyPrice = Math.Round(value / CurrentCount, 2);
-                    OnPropertyChanged("BuyPrice");
+                    var newBuyPrice = Math.Round(value * CurrentCount, 2);
+                    if (Math.Abs(newBuyPrice - _buyPrice) > (decimal) 0.01)
+                    {
+                        _buyPrice = Math.Round(value / CurrentCount, 2);
+                        OnPropertyChanged("BuyPrice");
+                    }
                 }
                 _totalPrice = value;
             }
@@ -55,8 +59,11 @@ namespace NightShopStockManager
             {
                 if (CurrentCount > 0)
                 {
-                    _totalPrice = Math.Round(value * CurrentCount, 2);
-                    OnPropertyChanged("TotalPrice");
+                    var newTotalPrice = Math.Round(value * CurrentCount, 2);
+                    if (Math.Abs(newTotalPrice - _totalPrice) > (decimal) (0.005 * CurrentCount)) {
+                        _totalPrice = Math.Round(value * CurrentCount, 2);
+                        OnPropertyChanged("TotalPrice");
+                    }
                 }
                 _buyPrice = value;
             }

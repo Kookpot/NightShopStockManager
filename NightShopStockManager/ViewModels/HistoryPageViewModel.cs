@@ -41,6 +41,13 @@ namespace NightShopStockManager.ViewModels
         }
         public DateTime CurrentDate { get { return DateTime.Now; } }
 
+        private int _selectedOption = 0;
+        public int SelectedOption
+        {
+            get { return _selectedOption; }
+            set { SetProperty(ref _selectedOption, value); }
+        }
+
         #endregion
 
         #region Command ShowData
@@ -57,14 +64,34 @@ namespace NightShopStockManager.ViewModels
             {
                 var sold = await App.Database.GetSoldDataAsync(Item, StartDate, EndDate);
                 var total = sold.Values.Sum();
-                var plot = new PlotModel { Title = $"{total} {Item.Name} Sold between {StartDate.ToString("dd/MM/yy")}-{EndDate.ToString("dd/MM/yy")} per day", TitleFontSize=8 };
+
+                var extraTitle = "per day";
+                var interval = DateTimeIntervalType.Days;
+                switch (SelectedOption)
+                {
+                    case 0:
+                        extraTitle = "per day";
+                        interval = DateTimeIntervalType.Days;
+                        break;
+                    case 1:
+                        extraTitle = "per week";
+                        interval = DateTimeIntervalType.Weeks;
+                        break;
+                    case 2:
+                        extraTitle = "per month";
+                        interval = DateTimeIntervalType.Months;
+                        break;
+                }
+
+
+                var plot = new PlotModel { Title = $"{total} {Item.Name} Sold between {StartDate.ToString("dd/MM/yy")}-{EndDate.ToString("dd/MM/yy")} {extraTitle}", TitleFontSize=8 };
                 var lineSeries = new LineSeries { StrokeThickness = 2.0 };
                 plot.Axes.Add(new DateTimeAxis
                 {
                     Position = AxisPosition.Bottom,
                     Minimum = DateTimeAxis.ToDouble(StartDate),
                     Maximum = DateTimeAxis.ToDouble(EndDate),
-                    IntervalType = DateTimeIntervalType.Days,
+                    IntervalType = interval,
                     StringFormat = "d/M"
                 });
                 foreach (var soldItem in sold)
