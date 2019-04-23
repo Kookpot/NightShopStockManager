@@ -13,7 +13,8 @@ namespace NightShopStockManager.ViewModels
         private Item _item;
         public Item Item {
             get { return _item; }
-            set {
+            set
+            {
                 SetProperty(ref _item, value);
                 RaisePropertyChanged("CanDelete");
             }
@@ -49,10 +50,7 @@ namespace NightShopStockManager.ViewModels
         private async Task OnSave()
         {
             await App.Database.SaveItemAsync(Item);
-            var parameters = new NavigationParameters
-            {
-                {"Item", Item }
-            };
+            var parameters = new NavigationParameters { {"Item", Item } };
             await _navigationService.GoBackAsync(parameters);
         }
 

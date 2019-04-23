@@ -1,6 +1,7 @@
 ﻿using NightShopStockManager.Views;
+using Prism;
 using Prism.Autofac;
-using Prism.Autofac.Forms;
+using Prism.Ioc;
 using Xamarin.Forms;
 
 namespace NightShopStockManager
@@ -9,8 +10,7 @@ namespace NightShopStockManager
     {
         static ItemDatabase database;
 
-        public App(IPlatformInitializer initializer = null) : base(initializer)
-        { }
+        public App(IPlatformInitializer initializer = null) : base(initializer) { }
 
         protected override void OnInitialized()
         {
@@ -18,25 +18,17 @@ namespace NightShopStockManager
             NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
-        protected override void RegisterTypes()
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            Container.RegisterTypeForNavigation<NavigationPage>();
-            Container.RegisterTypeForNavigation<MainPage>();
-            Container.RegisterTypeForNavigation<SummaryPage>();
-            Container.RegisterTypeForNavigation<ItemManagementPage>();
-            Container.RegisterTypeForNavigation<StockManagementPage>();
-            Container.RegisterTypeForNavigation<HistoryPage>();
-            Container.RegisterTypeForNavigation<BuyItemsPage>();
-            Container.RegisterTypeForNavigation<SettingsPage>();
-            Container.RegisterTypeForNavigation<SellItemsPage>();
-            Container.RegisterTypeForNavigation<ReportsPage>();
-            Container.RegisterTypeForNavigation<SupplierManagementPage>();
-            Container.RegisterTypeForNavigation<SupplierPage>();
-            Container.RegisterTypeForNavigation<ItemPage>();
-            Container.RegisterTypeForNavigation<PerformancePage>();
-            Container.RegisterTypeForNavigation<ManualEnteringPage>();
-            Container.RegisterTypeForNavigation<StockItemPage>();
-            Container.RegisterTypeForNavigation<BarcodePage>();
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<MainPage>();
+            containerRegistry.RegisterForNavigation<ItemManagementPage>();
+            containerRegistry.RegisterForNavigation<StockManagementPage>();
+            containerRegistry.RegisterForNavigation<BuyItemsPage>();
+            containerRegistry.RegisterForNavigation<ItemPage>();
+            containerRegistry.RegisterForNavigation<ManualEnteringPage>();
+            containerRegistry.RegisterForNavigation<StockItemPage>();
+            containerRegistry.RegisterForNavigation<BarcodePage>();
         }
 
         public static ItemDatabase Database
@@ -56,16 +48,10 @@ namespace NightShopStockManager
             }
         }
 
-        protected override void OnStart()
-        {
-        }
+        protected override void OnStart() { }
 
-        protected override void OnSleep()
-        {
-        }
+        protected override void OnSleep() { }
 
-        protected override void OnResume()
-        {
-        }
+        protected override void OnResume() { }
     }
 }

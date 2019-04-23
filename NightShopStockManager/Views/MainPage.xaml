@@ -33,10 +33,6 @@
         <Frame Style="{StaticResource DefaultFrame}">
             <StackLayout Style="{StaticResource DefaultStackLayout}">
                 <Button Style="{StaticResource DefaultNavButton}" 
-                        Image="sell.png" 
-                        Text="Sell Items" 
-                        Command="{Binding SellItems}"/>
-                <Button Style="{StaticResource DefaultNavButton}" 
                         Image="buy.png" 
                         Text="Buy Items" 
                         Command="{Binding BuyItems}"/>
@@ -45,13 +41,9 @@
                         Text="Stock Management" 
                         Command="{Binding StockManagement}"/>
                 <Button Style="{StaticResource DefaultNavButton}" 
-                        Image="reports.png" 
-                        Text="Reports" 
-                        Command="{Binding Reporting}"/>
-                <Button Style="{StaticResource DefaultNavButton}" 
-                        Image="settings.png" 
-                        Text="Settings" 
-                        Command="{Binding Settings}"/>
+                        Image="itemmanagement.png" 
+                        Text="Item Management" 
+                        Command="{Binding ItemManagement}"/>
             </StackLayout>
         </Frame>
     </ContentPage.Content>

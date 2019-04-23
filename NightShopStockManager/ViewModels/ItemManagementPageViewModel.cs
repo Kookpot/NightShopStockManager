@@ -34,10 +34,7 @@ namespace NightShopStockManager.ViewModels
         private Item _itemSelected;
         public Item ItemSelected
         {
-            get
-            {
-                return _itemSelected;
-            }
+            get { return _itemSelected; }
             set
             {
                 if (_itemSelected != value)
@@ -119,10 +116,7 @@ namespace NightShopStockManager.ViewModels
                 }
                 else
                 {
-                    var param = new NavigationParameters
-                    {
-                        { "Item", itm }
-                    };
+                    var param = new NavigationParameters { { "Item", itm } };
                     await _navigationService.NavigateAsync("ItemPage", param);
                 }
             }

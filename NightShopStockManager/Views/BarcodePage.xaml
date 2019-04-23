@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:barcode ="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
              xmlns:c="clr-namespace:NightShopStockManager.Helpers.BindingConverters;assembly=NightShopStockManager"
-             xmlns:b="clr-namespace:NightShopStockManager.Helpers.Behaviours;assembly=NightShopStockManager"
              xmlns:control="clr-namespace:NightShopStockManager;assembly=NightShopStockManager"
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"

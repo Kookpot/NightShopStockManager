@@ -1,11 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="NightShopStockManager.Android" android:installLocation="auto">
-	<uses-sdk android:minSdkVersion="24" android:targetSdkVersion="25" />
-	<uses-permission android:name="android.permission.CAMERA" />
-	<uses-permission android:name="android.permission.CAPTURE_VIDEO_OUTPUT" />
-	<uses-permission android:name="android.permission.FLASHLIGHT" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="NightShopStockManager.Android" android:installLocation="auto" android:versionCode="1" android:versionName="1.0">
+	<uses-sdk android:minSdkVersion="26" android:targetSdkVersion="26" />
+  <uses-permission android:name="android.permission.CAMERA" />
+  <uses-permission android:name="android.permission.VIBRATE" />
 	<application android:label="NightShopStockManager" android:icon="@drawable/stockmanagement" android:theme="@style/Theme.NightShopStockManager"></application>
 </manifest>

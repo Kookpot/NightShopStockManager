@@ -8,7 +8,6 @@
              Title="Manage stock">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <b:EuroConverter x:Key="EuroConverter"/>
             <b:SimpleDateConverter x:Key="SimpleDateConverter"/>
             <b:WarningConverter x:Key="WarningConverter"/>
             <Style x:Key="DefaultListView" TargetType="ListView">
@@ -64,7 +63,7 @@
                        Style="{StaticResource LeftLabel}"/>
                 <Entry Text="{Binding SearchValue}"
                        x:Name="SearchEntry"
-                       Placeholder="Name/supplier/barcode"
+                       Placeholder="Name/barcode"
                        Style="{StaticResource BarcodeEntry}"/>
                 <Button Command="{Binding BarcodeSearch}"
                         Style="{StaticResource BarcodeButton}"
@@ -84,28 +83,12 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Label Text="Name"
                                Grid.Column="0"
                                Style="{StaticResource DefaultLabel}"/>
-                        <Label Text="Sup."
-                               Grid.Column="1"
-                               Style="{StaticResource DefaultLabel}"/>
-                        <Label Text="Count"
-                               Grid.Column="2"
-                               Style="{StaticResource DefaultLabel}"/>
                         <Label Text="Exp."
-                               Grid.Column="3"
-                               Style="{StaticResource DefaultLabel}"/>
-                        <Label Text="Buy $"
-                               Grid.Column="4"
-                               Style="{StaticResource DefaultLabel}"/>
-                        <Label Text="Sell $"
-                               Grid.Column="5"
+                               Grid.Column="1"
                                Style="{StaticResource DefaultLabel}"/>
                     </Grid>
                 </ListView.Header>
@@ -116,29 +99,13 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
                                 <Label Text="{Binding Name}" 
                                        Grid.Column="0"
                                        Style="{StaticResource DefaultLabel}"/>
-                                <Label Text="{Binding SupplierName}" 
-                                       Grid.Column="1"
-                                       Style="{StaticResource DefaultLabel}"/>
-                                <Label Text="{Binding CurrentCount}" 
-                                       Grid.Column="2"
-                                       Style="{StaticResource DefaultLabel}"/>
                                 <Label Text="{Binding ExpiryDate, Converter={StaticResource SimpleDateConverter}}" 
-                                       Grid.Column="3"
+                                       Grid.Column="1"
                                        TextColor="{Binding HasExpired, Converter={StaticResource WarningConverter}}"
-                                       Style="{StaticResource DefaultLabel}"/>
-                                <Label Text="{Binding BuyPrice, Converter={StaticResource EuroConverter}}" 
-                                       Grid.Column="4"
-                                       Style="{StaticResource DefaultLabel}"/>
-                                <Label Text="{Binding SellPrice, Converter={StaticResource EuroConverter}}" 
-                                       Grid.Column="6"
                                        Style="{StaticResource DefaultLabel}"/>
                             </Grid>
                         </ViewCell>

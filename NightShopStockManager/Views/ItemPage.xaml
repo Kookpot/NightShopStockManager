@@ -28,15 +28,13 @@
 		    <Label Text="Name" />
             <Entry Text="{Binding Item.Name}"/>
             <Label Text="Barcode"/>
-            <StackLayout Style="{StaticResource BarcodeStackLayout}">
-                <Entry Text="{Binding Item.Barcode}"
+                <StackLayout Style="{StaticResource BarcodeStackLayout}">
+                    <Entry Text="{Binding Item.Barcode}"
                        Style="{StaticResource BarcodeEntry}"/>
-                <Button Command="{Binding BarcodeSearch}"
+                    <Button Command="{Binding BarcodeSearch}"
                         Image="barcodesearch.png"/>
-            </StackLayout>
-            <Label Text="SellPrice" />
-            <Entry Text="{Binding Item.SellPrice}"/>
-            <Button Text="Save" 
+                </StackLayout>
+                <Button Text="Save" 
                     Command="{Binding Save}"/>
 		    <Button Text="Delete"
                     IsVisible="{Binding CanDelete}"

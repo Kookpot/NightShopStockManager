@@ -15,7 +15,8 @@ namespace NightShopStockManager.ViewModels
         public CombinedStockItem StockItem
         {
             get { return _stockItem; }
-            set {
+            set
+            {
                 SetProperty(ref _stockItem, value);
                 RaisePropertyChanged("CanDelete");
             }
@@ -66,7 +67,6 @@ namespace NightShopStockManager.ViewModels
 
         private async Task OnDelete()
         {
-            await App.Database.AddThowAwayRecord(StockItem);
             await App.Database.DeleteStockItemAsync(StockItem);
             await _navigationService.GoBackAsync();
         }
@@ -85,22 +85,6 @@ namespace NightShopStockManager.ViewModels
         {
             _parameters.Add("Select", true);
             await _navigationService.NavigateAsync("ItemManagementPage", _parameters);
-        }
-
-        #endregion
-
-        #region Supplier Search
-
-        private Command _supplierSearch;
-        public Command SupplierSearch
-        {
-            get { return _supplierSearch ?? (_supplierSearch = new Command(async () => await OnSupplierSearch())); }
-        }
-
-        private async Task OnSupplierSearch()
-        {
-            _parameters.Add("Select", true);
-            await _navigationService.NavigateAsync("SupplierManagementPage", _parameters);
         }
 
         #endregion
@@ -128,13 +112,6 @@ namespace NightShopStockManager.ViewModels
                 StockItem.Barcode = itm.Barcode;
                 StockItem.Item = itm.ID;
                 StockItem.Name = itm.Name;
-                StockItem.SellPrice = itm.SellPrice;
-            }
-            if (parameters.ContainsKey("Supplier"))
-            {
-                var itm = (Supplier)parameters["Supplier"];
-                StockItem.Supplier = itm.ID;
-                StockItem.SupplierName = itm.Name;
             }
         }
 

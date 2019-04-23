@@ -19,10 +19,7 @@ namespace NightShopStockManager.ViewModels
 
         private async void CompletingEntry()
         {
-            var parameters = new NavigationParameters
-            {
-                { "Barcode", Barcode }
-            };
+            var parameters = new NavigationParameters { { "Barcode", Barcode } };
             await _navigationService.GoBackAsync(parameters);
         }
 

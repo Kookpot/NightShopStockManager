@@ -78,10 +78,7 @@ namespace NightShopStockManager.ViewModels
             var item = (await App.Database.SearchItemsAsync(barcode)).FirstOrDefault();
             if (item != null)
             {
-                var parameters = new NavigationParameters
-                {
-                    {"Item", item }
-                };
+                var parameters = new NavigationParameters { {"Item", item } };
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await _navigationService.NavigateAsync("StockItemPage", parameters);
@@ -89,10 +86,7 @@ namespace NightShopStockManager.ViewModels
             }
             else
             {
-                var parameters = new NavigationParameters
-                {
-                    {"Barcode", barcode }
-                };
+                var parameters = new NavigationParameters { {"Barcode", barcode } };
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     await _navigationService.NavigateAsync("ItemPage", parameters);
@@ -103,13 +97,9 @@ namespace NightShopStockManager.ViewModels
         public override async void OnNavigatedTo(NavigationParameters parameters)
         {
             if (parameters.ContainsKey("Barcode"))
-            {
                 await HandleBarcode((string)parameters["Barcode"]);
-            }
             else if (parameters.ContainsKey("Item"))
-            {
                 await _navigationService.NavigateAsync("StockItemPage", parameters);
-            }
             else
             {
                 IsScanning = true;

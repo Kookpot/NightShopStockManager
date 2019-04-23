@@ -22,8 +22,6 @@ namespace NightShopStockManager
             }
         }
 
-        public decimal SellPrice { get; set; }
-
         protected void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
@@ -36,8 +34,7 @@ namespace NightShopStockManager
             {
                 ID = ID,
                 Name = Name,
-                Barcode = Barcode,
-                SellPrice = SellPrice
+                Barcode = Barcode
             };
         }
     }

@@ -44,10 +44,7 @@ namespace NightShopStockManager.ViewModels
         private CombinedStockItem _itemSelected;
         public CombinedStockItem ItemSelected
         {
-            get
-            {
-                return _itemSelected;
-            }
+            get { return _itemSelected; }
             set
             {
                 if (_itemSelected != value)
@@ -116,10 +113,7 @@ namespace NightShopStockManager.ViewModels
         {
             if (itm != null)
             {
-                var param = new NavigationParameters
-                {
-                    { "StockItem", itm.Clone() }
-                };
+                var param = new NavigationParameters { { "StockItem", itm.Clone() } };
                 await _navigationService.NavigateAsync("StockItemPage", param);
             }
         }

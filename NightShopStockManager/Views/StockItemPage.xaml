@@ -32,21 +32,6 @@
                     <Button Command="{Binding ItemSearch}"
                             Image="itemsearch.png"/>
                 </StackLayout>
-                <Label Text="Sell price" />
-                <Label Text="{Binding StockItem.SellPrice}"/>
-                <Label Text="Supplier" />
-                <StackLayout Style="{StaticResource ItemStackLayout}">
-                    <Label Text="{Binding StockItem.SupplierName}"
-                           Style="{StaticResource ItemLabel}"/>
-                    <Button Command="{Binding SupplierSearch}"
-                            Image="itemsearch.png"/>
-                </StackLayout>
-                <Label Text="Current count" />
-                <Entry Text="{Binding StockItem.CurrentCount}"/>
-                <Label Text="Buy price/p. item"/>
-                <Entry Text="{Binding StockItem.BuyPrice}"/>
-                <Label Text="Total buy price"/>
-                <Entry Text="{Binding StockItem.TotalPrice}"/>
                 <Label Text="Expiry Date"/>
                 <DatePicker Date="{Binding StockItem.ExpiryDate}"/>
                 <Button Text="Save" 

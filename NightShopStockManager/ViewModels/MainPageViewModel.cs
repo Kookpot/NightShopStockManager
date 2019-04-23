@@ -1,6 +1,4 @@
 ﻿using Prism.Navigation;
-using System;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -49,66 +47,6 @@ namespace NightShopStockManager.ViewModels
         private async Task OnBuyItems()
         {
             await _navigationService.NavigateAsync("BuyItemsPage");
-        }
-
-        #endregion
-
-        #region Command Sell Items
-
-        private Command _sellItems;
-        public Command SellItems
-        {
-            get { return _sellItems ?? (_sellItems = new Command(async () => await OnSellItems())); }
-        }
-
-        private async Task OnSellItems()
-        {
-            await _navigationService.NavigateAsync("SellItemsPage");
-        }
-
-        #endregion
-
-        #region Command Supplier Management
-
-        private Command _supplierManagement;
-        public Command SupplierManagement
-        {
-            get { return _supplierManagement ?? (_supplierManagement = new Command(async () => await OnSupplierManagement())); }
-        }
-
-        private async Task OnSupplierManagement()
-        {
-            await _navigationService.NavigateAsync("SupplierManagementPage");
-        }
-
-        #endregion
-
-        #region Command Reporting
-
-        private Command _reporting;
-        public Command Reporting
-        {
-            get { return _reporting ?? (_reporting = new Command(async () => await OnReporting())); }
-        }
-
-        private async Task OnReporting()
-        {
-            await _navigationService.NavigateAsync("ReportsPage");
-        }
-
-        #endregion
-
-        #region Command Settings
-
-        private Command _settings;
-        public Command Settings
-        {
-            get { return _settings ?? (_settings = new Command(async () => await OnSettings())); }
-        }
-
-        private async Task OnSettings()
-        {
-            await _navigationService.NavigateAsync("SettingsPage");
         }
 
         #endregion
